@@ -3,11 +3,13 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
 
 
-const CalendarPage = (navigation) => {
+const ProfilePage = (navigation) => {
 
+    
     return (
         <View style={styles.container}>
-            <Text>this is the Calendar page</Text>
+            <Text>this is the Profile page</Text>
+
         </View>
     );
 }
@@ -22,4 +24,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CalendarPage;
+export default ProfilePage;

@@ -3,19 +3,17 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
 
 
-const MainPage = ({navigation}) => {
+const HomePage = (navigation) => {
 
-    const gotToPage = (pageName) => {
-        console.log("going to: " + pageName)
-        navigation.navigate(pageName)
-      }
-    
+ 
     return (
         <View style={styles.container}>
-            <Text>this is the main page</Text>
+            <Text>this is the Home page</Text>
+
         </View>
     );
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -26,4 +24,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default MainPage;
+export default HomePage;

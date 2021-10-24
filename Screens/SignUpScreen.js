@@ -1,14 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
+import { AuthContext } from "../context";
 
+const SignUpPage = (navigation) => {
 
-const SignUpPage = ({navigation}) => {
-
-  const gotToPage = (pageName) => {
-    console.log("going to: " + pageName)
-    navigation.navigate(pageName)
-  }
+  const {signUp} = React.useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -21,10 +18,10 @@ const SignUpPage = ({navigation}) => {
       {/* all the buttons are in the btnContainer view */}
       <View style={styles.btnContainer}>
         <TouchableOpacity style={styles.userBtn}>
-          <Text style={styles.btnTxt} onPress={() => gotToPage('MainPage')}>Create Account</Text>
+          <Text style={styles.btnTxt} onPress={() => signUp()}>Create Account</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.userBtn} onPress={() => gotToPage('LoginPage')}>
+        <TouchableOpacity style={styles.userBtn} onPress={() => navigation.push("LoginPage")}>
           <Text style={styles.btnTxt}>Cancel</Text>
         </TouchableOpacity>
       </View>

@@ -9,11 +9,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { AuthContext } from './context';
-import SignUpScreen from './pages/SignUpScreen';
-import LoginScreen from './pages/LoginScreen';
-import HomeScreen from './pages/HomePage';
-import ProfilePage from './pages/ProfilePage';
-import CalendarPage from './pages/CalendarPage';
+import SignUpScreen from './Screens/SignUpScreen';
+import LoginScreen from './Screens/LoginScreen';
+import HomeScreen from './Screens/HomeScreen';
+import ProfileScreen from './Screens/ProfileScreen';
+import CalendarScreen from './Screens/CalendarScreen';
 
 
 const AuthStack = createStackNavigator();

@@ -3,11 +3,11 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
 
 
-const MainPage = ({navigation}) => {
+const MainScreen = ({navigation}) => {
 
-    const gotToPage = (pageName) => {
-        console.log("going to: " + pageName)
-        navigation.navigate(pageName)
+    const gotToScreen = (screenName) => {
+        console.log("going to: " + screenName)
+        navigation.navigate(screenName)
       }
     
     return (
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default MainPage;
+export default MainScreen;

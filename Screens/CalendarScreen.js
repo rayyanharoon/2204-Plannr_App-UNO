@@ -1,17 +1,25 @@
-import React from 'react'
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars'
-import { LocaleConfig } from 'react-native-calendars'
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
 
 
+const CalendarPage = (navigation) => {
 
-LocaleConfig.locales['data'] = {
-    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    dayNanes: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    today: 'today'
+    return (
+        <View style={styles.container}>
+            <Text>this is the Calendar page</Text>
+        </View>
+    );
 }
 
-LocaleConfig.defaultLocale = 'data'
 
-{/* <Calendar
-    current = {'2021-10-01'}
-/> */}
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+});
+
+export default CalendarPage;

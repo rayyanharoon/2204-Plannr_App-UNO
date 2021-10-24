@@ -1,21 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
+import { AuthContext } from "../context";
 
 let usernameTF;
 let passwordTF;
 
-const LoginScreen = ({navigation}) => {
+const LoginPage = ({navigation}) => {
 
-    const gotToScreen = (screenName) => {
-        console.log("going to: " + screenName)
-        navigation.navigate(screenName)
-      }
-    
-    
-    const loginBtn = () => {
-      
-    }
+    const {login} = React.useContext(AuthContext);
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>plannr</Text>
@@ -27,21 +20,18 @@ const LoginScreen = ({navigation}) => {
         
         {/* login button */}
         <TouchableOpacity style={styles.userBtn}>
-          <Text  style={styles.btnTxt} name="login" onPress={() => gotToScreen('MainScreen')}>Login</Text>
+          <Text  style={styles.btnTxt} name="login" onPress={() => login()}>Login</Text>
         </TouchableOpacity>
 
         {/* sign up button */}
         <TouchableOpacity style={styles.userBtn} >
-          <Text style={styles.btnTxt} name="signUp" onPress={() => gotToScreen('SignUpScreen')}>Sign up</Text>
+          <Text style={styles.btnTxt} name="signUp" onPress={() => navigation.push("SignUpPage")}>Sign up</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
-const gotToscreen = () => {
-    print( "going to page")
-    navigation.navigate('SignUpScreen')
-  }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -94,4 +84,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default LoginScreen;
+export default LoginPage;

@@ -3,12 +3,12 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
 
 
-const HomePage = (navigation) => {
+const ProfilePage = (navigation) => {
 
- 
+    
     return (
         <View style={styles.container}>
-            <Text>this is the Home page</Text>
+            <Text>this is the Profile page</Text>
 
         </View>
     );
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default HomePage;
+export default ProfilePage;

@@ -6,7 +6,7 @@ import { AuthContext } from "../context";
 let usernameTF;
 let passwordTF;
 
-const LoginPage = ({navigation}) => {
+const LoginScreen = ({navigation}) => {
 
     const {login} = React.useContext(AuthContext);
   return (
@@ -25,7 +25,7 @@ const LoginPage = ({navigation}) => {
 
         {/* sign up button */}
         <TouchableOpacity style={styles.userBtn} >
-          <Text style={styles.btnTxt} name="signUp" onPress={() => navigation.push("SignUpPage")}>Sign up</Text>
+          <Text style={styles.btnTxt} name="signUp" onPress={() => navigation.push("SignUpScreen")}>Sign up</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default LoginPage;
+export default LoginScreen;

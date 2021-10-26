@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
 import { AuthContext } from "../context";
 
-const SignUpPage = (navigation) => {
+const SignUpScreen = (navigation) => {
 
   const {signUp} = React.useContext(AuthContext);
 
@@ -21,7 +21,7 @@ const SignUpPage = (navigation) => {
           <Text style={styles.btnTxt} onPress={() => signUp()}>Create Account</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.userBtn} onPress={() => navigation.push("LoginPage")}>
+        <TouchableOpacity style={styles.userBtn} onPress={() => navigation.push("LoginScreen")}>
           <Text style={styles.btnTxt}>Cancel</Text>
         </TouchableOpacity>
       </View>
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default SignUpPage;
+export default SignUpScreen;

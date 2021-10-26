@@ -1,0 +1,24 @@
+install expo:
+>npm install --g expo-cli
+
+install stack if its looking for it...:
+>npm install @react-navigation/native
+>npm isntall @react-navigation/stack
+
+making an expo app: 
+>expo init appNameHere
+
+ADDING A NEW PAGE:
+1) make a NameofPage.js file in pages folder
+2) try and copy paste the import stuff on top
+3) make sure NameOfPage is also at the bottom 
+    where it should say 'export default NameOfPage;'
+4)add it to App.js imports,
+    should be: import NameOfPage from './folder/nameOfPagefolder';
+5) add it to stack container, name should be exactly like the import one
+
+if node_modules keeps popping up as modified
+https://stackoverflow.com/questions/50675829/remove-node-modules-from-git-in-vscode
+
+if "SafeAreaProvider error pops up and says something about registering two views
+https://github.com/th3rdwave/react-native-safe-area-context/issues/110#issuecomment-668625988

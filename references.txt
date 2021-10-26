@@ -1,0 +1,10 @@
+
+login, signup, botton nav bar, stack navigation, authentication
+https://github.com/ReactNativeSchool/getting-started-react-navigation-v5/blob/master/App/Screens.js
+https://www.youtube.com/watch?v=nQVCkqvU1uE&ab_channel=ReactNativeSchool
+
+
+login and sign up ui
+https://www.youtube.com/watch?v=qeVym38-eoc
+
+

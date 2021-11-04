@@ -4,6 +4,11 @@ install expo:
 install stack if its looking for it...:
 >npm install @react-navigation/native
 >npm isntall @react-navigation/stack
+>npm i @react-navigation/bottom-tabs
+>npm i react-native-calendars
+>npm i react-native-paper
+*react-native-gesture-handler
+*moment from 'moment'
 
 making an expo app: 
 >expo init appNameHere

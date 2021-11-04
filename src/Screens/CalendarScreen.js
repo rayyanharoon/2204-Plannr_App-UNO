@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
 
+import * as Calendar from 'expo-calendar'
+
 
 const CalendarScreen = (navigation) => {
 

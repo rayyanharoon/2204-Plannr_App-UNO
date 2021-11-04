@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
-import { AuthContext } from "../context";
+import { AuthContext } from "../../context";
 
 let usernameTF;
 let passwordTF;

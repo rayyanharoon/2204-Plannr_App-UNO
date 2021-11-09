@@ -14,7 +14,7 @@ import LoginScreen from './src/Screens/LoginScreen';
 import HomeScreen from './src/Screens/HomeScreen';
 import ProfileScreen from './src/Screens/ProfileScreen';
 import CalendarScreen from './src/Screens/CalendarScreen';
-
+//import CreateAnEvent from './src/Screens/CalendarScreen'
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
@@ -120,3 +120,15 @@ function App() {
 }
 
 export default App;
+
+
+// export async function getServerSideProps(){
+//   const data = await getUsers()
+
+//   return {
+//     props: {
+//       users
+//     }
+//   }
+
+// }

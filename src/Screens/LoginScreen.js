@@ -3,8 +3,9 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
 import { AuthContext } from "../../context";
 
-let usernameTF;
-let passwordTF;
+
+//let usernameTF;
+//let passwordTF;
 
 const LoginScreen = ({navigation}) => {
 
@@ -31,7 +32,6 @@ const LoginScreen = ({navigation}) => {
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -79,9 +79,24 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center'
   }
-
-
 });
 
-
 export default LoginScreen;
+
+const handleLogin = async () => {
+  const data = {
+    username,
+    password
+  }
+}
+
+export async function getServerSideProps(){
+  const data = await getUsers()
+
+  return {
+    props: {
+      users
+    }
+  }
+
+}

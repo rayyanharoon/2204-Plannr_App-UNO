@@ -19,6 +19,7 @@ const CalendarScreen = (navigation) => {
             />
             </View>
 
+            {/* alert function only works for mobile emulator */}
 
         </View>
     );

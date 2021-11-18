@@ -9,16 +9,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { AuthContext } from './context';
-import SignUpScreen from './src/Screens/SignUpScreen';
-import LoginScreen from './src/Screens/LoginScreen';
-import HomeScreen from './src/Screens/HomeScreen';
-import ProfileScreen from './src/Screens/ProfileScreen';
-import CalendarScreen from './src/Screens/CalendarScreen';
-//import CreateAnEvent from './src/Screens/CalendarScreen'
+import SignUpScreen from './Screens/SignUpScreen';
+import LoginScreen from './Screens/LoginScreen';
+import HomeScreen from './Screens/HomeScreen';
+import ProfileScreen from './Screens/ProfileScreen';
+import CalendarScreen from './Screens/CalendarScreen';
+import AddEventScreen from './Screens/AddEventScreen';
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
-  <AuthStack.Navigator>
+  <AuthStack.Navigator screenOptions={{headerShown:false}}>
     <AuthStack.Screen 
       name="LoginScreen"
       component={LoginScreen}
@@ -38,26 +38,28 @@ const HomeStack = createStackNavigator();
 
 
 const HomeStackScreen = () => (
-  <HomeStack.Navigator headerMode="none">
+  <HomeStack.Navigator screenOptions={{headerShown:false}} >
     <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
-    <HomeStack.Screen name="ProfileScreen" component={ProfileScreen}/>
+    <HomeStack.Screen name="AddEventScreen" component={AddEventScreen}/>
     <HomeStack.Screen name="CalendarScreen" component={CalendarScreen}/>
+    <HomeStack.Screen name="ProfileScreen" component={ProfileScreen}/>
   </HomeStack.Navigator>
 
 )
 
 const TabScreen = () => (
-  <Tabs.Navigator headerMode="none">
+  <Tabs.Navigator screenOptions={{headerShown:false}} >
     <Tabs.Screen name="HomeScreen" component={HomeStackScreen} /> 
-    <Tabs.Screen name="ProfileScreen" component={ProfileScreen} />
+    <Tabs.Screen name="AddEventScreen" component={AddEventScreen}/> 
     <Tabs.Screen name="CalendarScreen" component={CalendarScreen}/>
+    <Tabs.Screen name="ProfileScreen" component={ProfileScreen} />
   </Tabs.Navigator>
 
 )
 
 const RootStack = createStackNavigator();
 const RootStackScreen = ({userToken}) => (
-  <RootStack.Navigator headerMode="none">
+  <RootStack.Navigator screenOptions={{headerShown:false}}>
     {userToken ? (
       <RootStack.Screen
         name="App"
@@ -120,15 +122,3 @@ function App() {
 }
 
 export default App;
-
-
-// export async function getServerSideProps(){
-//   const data = await getUsers()
-
-//   return {
-//     props: {
-//       users
-//     }
-//   }
-
-// }

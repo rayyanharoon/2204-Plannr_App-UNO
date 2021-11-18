@@ -1,11 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
-import { AuthContext } from "../../context";
-
-
-//let usernameTF;
-//let passwordTF;
+import { AuthContext } from "../context";
+// import {Animatable} from 'react-native-animatable';
+let usernameTF;
+let passwordTF;
 
 const LoginScreen = ({navigation}) => {
 
@@ -15,6 +14,8 @@ const LoginScreen = ({navigation}) => {
       <Text style={styles.logo}>plannr</Text>
       <Text style={styles.welcome}>Login</Text>
       <TextInput style={styles.input} placeholder="Username"/>
+      {/* <Animatable.View animation="fadeInLeft" duration={500}/> */}
+      {/* <Text style={styles.errorMsg}> Invalid Username. </Text> */}
       <TextInput style={styles.input} placeholder="Password" secureTextEntry />
 
       <View style={styles.btnContainer}>
@@ -32,6 +33,8 @@ const LoginScreen = ({navigation}) => {
     </View>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -79,24 +82,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center'
   }
+
+
 });
 
+
 export default LoginScreen;
-
-const handleLogin = async () => {
-  const data = {
-    username,
-    password
-  }
-}
-
-export async function getServerSideProps(){
-  const data = await getUsers()
-
-  return {
-    props: {
-      users
-    }
-  }
-
-}

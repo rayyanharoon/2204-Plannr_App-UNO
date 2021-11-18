@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
-import { AuthContext } from "../../context";
+import { AuthContext } from "../context";
 
-const SignUpScreen = (navigation) => {
+const SignUpScreen = ({navigation}) => {
 
   const {signUp} = React.useContext(AuthContext);
 

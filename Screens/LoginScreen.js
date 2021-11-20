@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     margin: 10,
     color: '#fff',
     fontFamily: 'monospace'
-
   },
   welcome: {
     fontSize: 30,

@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
-import {Calendar} from 'react-native-calendars';
+import React, {useState} from 'react';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Picker} from 'react-native';
 
+//adding the calendar template
+import {Calendar} from 'react-native-calendars';
 
 const AddEventScreen = ({navigation}) => {
 
     const [eventName, onChangeEventName] = React.useState('')
     const [description, onChangeDesc] = React.useState('')
-    //const [selectDate, onChangeSelectDate] = React.useState('')
-    const [priority, onChangePriority] = React.useState('')
+
+    const [selectedValue, setSelectedValue] = useState("high");
 
     return (
         <View style={styles.container}>
@@ -73,12 +74,15 @@ const AddEventScreen = ({navigation}) => {
             />
 
         {/* this should be a drop down menu */}
-        <TextInput
-            style={styles.input}
-            onChangeText={onChangePriority}
-            value={priority}
-            placeholder={'Select Priority'}
-        />
+        <Picker
+            selectedValue={selectedValue}
+            style={{ height: 50, width: 150 }}
+            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+        >
+            <Picker.Item label="High" value="high" />
+            <Picker.Item label="Medium" value="medium" />
+            <Picker.Item label="Low" value="low" />
+      </Picker>
 
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
@@ -118,6 +122,15 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         color: 'black'
     },
+    // inputDropdown: {
+    //     height: 50,
+    //     width: 150,
+    //     backgroundColor: '#fff',
+    //     padding: 15,
+    //     marginBottom: 10,
+    //     borderRadius: 10,
+    //     alignItems: 'center'
+    // },
     descstyle: {
         width: "90%",
         backgroundColor: '#fff',
@@ -142,7 +155,6 @@ const styles = StyleSheet.create({
     buttonContainer: {
         // stacks the components in the container 
         flexDirection: 'column',
-        // justifyContent: 'space-between',
         alignItems: 'center',
         width: '90%'
     },

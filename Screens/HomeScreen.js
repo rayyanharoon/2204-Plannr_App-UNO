@@ -17,7 +17,7 @@ const timeToString = (time) => {
     const date = new Date(time);
     return date.toISOString().split('T')[0];
   };
-const HomeScreen = (navigation) => {
+const HomeScreen = ({navigation}) => {
     const [items, setItems] = React.useState({});
 
     const loadItems = (day) => {
@@ -46,7 +46,9 @@ const HomeScreen = (navigation) => {
   
     const renderItem = (item) => {
       return (
-        <TouchableOpacity style={{marginRight: 10, marginTop: 17}}>
+        <TouchableOpacity style={{marginRight: 10, marginTop: 17}}
+                //goes to event that was pressed
+                onPress={() => navigation.push("EventScreen") }>
           <Card>
             <Card.Content>
               <View
@@ -67,10 +69,15 @@ const HomeScreen = (navigation) => {
     return (
       <View style={{flex: 1}}>
         <Agenda
-          items={items}
-          loadItemsForMonth={loadItems}
-          selected={currentDate}
-          renderItem={renderItem}
+       items={items}
+       loadItemsForMonth={loadItems}
+       selected={currentDate}
+       renderItem={renderItem}
+       showClosingKnob={true}
+       onCalendarToggled={(calendarOpened) => {console.log("isCalendarOpen:" +calendarOpened)}}
+       //get the day that was clicked in the draggable calendar
+       onDayPress={(response) => console.log(response)}
+
         />
       </View>
     );

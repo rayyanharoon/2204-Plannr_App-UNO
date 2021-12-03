@@ -1,97 +1,142 @@
+import React, {useState} from 'react';
+import { KeyboardAvoidingView, Platform, StyleSheet,Button, Text, Modal, TouchableOpacity, TextInput, View, Keyboard } from 'react-native';
+import ProfileScreen from './ProfileScreen';
+import Task from './Task';
+import { ScrollView } from 'react-native-gesture-handler';
+import { AuthContext } from "../context";
 
 
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
-import {Agenda} from 'react-native-calendars';
-import {Card, Avatar} from 'react-native-paper';
-
-import moment from 'moment'; 
-
-
-var now = moment().format();
-
-var currentDate = moment().format("YYYY/MM/DD");
-
-const timeToString = (time) => {
-    const date = new Date(time);
-    return date.toISOString().split('T')[0];
-  };
 const HomeScreen = ({navigation}) => {
-    const [items, setItems] = React.useState({});
+  const [isModalVisible, setModalVisibility] = React.useState(false);
 
-    const loadItems = (day) => {
-      setTimeout(() => {
-        for (let i = -15; i < 85; i++) {
-          const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-          const strTime = timeToString(time);
-          if (!items[strTime]) {
-            items[strTime] = [];
-            const numItems = Math.floor(Math.random() * 3 + 1);
-            for (let j = 0; j < numItems; j++) {
-              items[strTime].push({
-                name: 'Item for ' + strTime + ' #' + j,
-                height: Math.max(50, Math.floor(Math.random() * 150)),
-              });
-            }
-          }
+  const [task, setTask] = useState();
+  const [taskItems, setTaskItems] = useState([]);
+
+
+  const handleAddTask = () => {
+    Keyboard.dismiss();
+    setTaskItems([...taskItems, task])
+    setTask(null);
+  }
+
+  const completeTask = (index) => {
+    let itemsCopy = [...taskItems];
+    itemsCopy.splice(index, 1);
+    setTaskItems(itemsCopy);
+  }
+
+  return (
+    <View style={styles.container}>
+
+     {/* today's tasks */}
+    <View style={styles.taskWrapper}>
+      <Text style={styles.sectionTitle}> Today's tasks</Text>
+      <ScrollView>
+      <View style={styles.items}>
+        {/* this is where the tasks will go~~~ */}
+        {
+          taskItems.map((item, index) => {
+            return (
+              <TouchableOpacity key={index} onPress={() => setModalVisibility(!isModalVisible)}>
+                <Task text={item} />
+
+              </TouchableOpacity>
+            )
+          })
         }
-        const newItems = {};
-        Object.keys(items).forEach((key) => {
-          newItems[key] = items[key];
-        });
-        setItems(newItems);
-      }, 10);
-    };
-  
-    const renderItem = (item) => {
-      return (
-        <TouchableOpacity style={{marginRight: 10, marginTop: 17}}
-                //goes to event that was pressed
-                onPress={() => navigation.push("EventScreen") }>
-          <Card>
-            <Card.Content>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <Text>{item.name}</Text>
-                <Avatar.Text label="J" />
-              </View>
-            </Card.Content>
-          </Card>
-        </TouchableOpacity>
-      );
-    };
-  
-    return (
-      <View style={{flex: 1}}>
-        <Agenda
-       items={items}
-       loadItemsForMonth={loadItems}
-       selected={currentDate}
-       renderItem={renderItem}
-       showClosingKnob={true}
-       onCalendarToggled={(calendarOpened) => {console.log("isCalendarOpen:" +calendarOpened)}}
-       //get the day that was clicked in the draggable calendar
-       onDayPress={(response) => console.log(response)}
-
-        />
+        
       </View>
-    );
+      </ScrollView>
+    </View>
 
-    }
+    <Modal
+    transparent={true}
+    visible={isModalVisible}
+    animationType='fade'
+>
+    <View style={{backgroundColor: "#000000aa", flex: 1}}>
+        <View style={{backgroundColor: "#ffffff", margin: 50, padding: 40, borderRadius: 10, flex: 1}}> 
+        <Text stlye={{fontSize: 50}}> Modal Text</Text>
+        <ProfileScreen/>
+        <Button title="close modal" onPress={()=>{setModalVisibility(!isModalVisible)}}/>
+        </View>
+        
 
+    </View>
+    
+    </Modal>
+    {/* write a task */}
+
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.writeTaskWrapper}
+      >
+
+        
+        {/* <TextInput style={styles.input} placeholder={'Write a task'} value={task} onChangeText={text => setTask(text)}/> */}
+
+        {/* add button just change on press func so it leads to add events */}
+        <TouchableOpacity onPress={() => handleAddTask()}>
+          <View style={styles.addWrapper}>
+            <Text style={styles.addText}>+</Text>
+          </View>
+
+        </TouchableOpacity>
+
+      </KeyboardAvoidingView>
+
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
+  container: {
+    flex: 1,
+    backgroundColor: '#E8EAED',
+  },
+  taskWrapper: {
+    paddingTop: 50,
+    paddingHorizontal: 20,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    paddingBottom:10
+  },
+  items: {
+    marginTop: 20
+  },
+  writeTaskWrapper: {
+    position: 'absolute',
+    bottom: 60,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+  input: {
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    backgroundColor: '#fff',
+    borderRadius: 60,
+    borderColor: '#c0c0c0',
+    borderWidth: 1,
+    width: 250,
+
+  },
+  addWrapper: {
+    width: 60,
+    height: 60,
+    backgroundColor: '#fff',
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#c0c0c0',
+    borderWidth: 1
+  },
+  addText:{
+
+  }
 });
 
 export default HomeScreen;

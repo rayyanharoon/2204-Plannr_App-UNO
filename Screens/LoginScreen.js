@@ -1,28 +1,55 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
 import { AuthContext } from "../context";
 // import {Animatable} from 'react-native-animatable';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 let usernameTF;
 let passwordTF;
 
 const LoginScreen = ({navigation}) => {
 
-    const {login} = React.useContext(AuthContext);
+    const [loginUser, setLoginUser] = useState('');
+
+    const setData = async () => {
+        if (loginUser.length == 0) {
+            Alert.alert('Please enter your username')
+        } else {
+            try {
+            await AsyncStorage.setItem('UserName', loginUser)
+            navigation.push('HomeScreen')
+          } catch (e) {
+            // saving error
+            console.log(e)
+          }
+        }
+    }
+
+    // const {login} = React.useContext(AuthContext);
+    
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>plannr</Text>
       <Text style={styles.welcome}>Login</Text>
-      <TextInput style={styles.input} placeholder="Username"/>
+      <TextInput 
+          style={styles.input} 
+          placeholder="Username"
+          onChangeText={(value)=>setLoginUser(value)} 
+        />
+      
       {/* <Animatable.View animation="fadeInLeft" duration={500}/> */}
       {/* <Text style={styles.errorMsg}> Invalid Username. </Text> */}
+
       <TextInput style={styles.input} placeholder="Password" secureTextEntry />
 
       <View style={styles.btnContainer}>
         
         {/* login button */}
         <TouchableOpacity style={styles.userBtn}>
-          <Text  style={styles.btnTxt} name="login" onPress={() => login()}>Login</Text>
+          <Text  style={styles.btnTxt} name="login" onPress={setData}>Login</Text>
         </TouchableOpacity>
 
         {/* sign up button */}
@@ -33,7 +60,6 @@ const LoginScreen = ({navigation}) => {
     </View>
   );
 }
-
 
 
 const styles = StyleSheet.create({

@@ -7,8 +7,8 @@ import { AuthContext } from "../context";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-let usernameTF;
-let passwordTF;
+// let usernameTF;
+// let passwordTF;
 
 const LoginScreen = ({navigation}) => {
 
@@ -19,8 +19,12 @@ const LoginScreen = ({navigation}) => {
             Alert.alert('Please enter your username')
         } else {
             try {
-            await AsyncStorage.setItem('UserName', loginUser)
-            navigation.push('HomeScreen')
+              await AsyncStorage.setItem('UserName', loginUser);
+              
+              //this is where I can't access the navigation, it kept giving me the error of nested navigators
+              //navigation.push("HomeScreen")
+              navigation.navigate("App", {screen: "HomeScreen"});
+
           } catch (e) {
             // saving error
             console.log(e)

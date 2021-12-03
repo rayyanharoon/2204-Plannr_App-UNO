@@ -29,7 +29,14 @@ const AuthStackScreen = () => (
       component={SignUpScreen}
       options={{title: "Sign Up"}}
     />
+
+    {/* <AuthStack.Screen
+      name="HomeScreen"
+      component={HomeScreen}
+      options={{title: "Home"}}
+    /> */}
   </AuthStack.Navigator>
+
 )
 
 const Tabs = createBottomTabNavigator();

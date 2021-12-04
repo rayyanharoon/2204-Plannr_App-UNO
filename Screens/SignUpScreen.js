@@ -1,24 +1,75 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
 import { AuthContext } from "../context";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignUpScreen = ({navigation}) => {
 
   const {signUp} = React.useContext(AuthContext);
 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  useEffect(() => {
+      getData();
+  }, []);
+
+    // automatically logins if theres a username already stored
+  const getData = () => {
+      try {
+          AsyncStorage.getItem('UserData')
+              .then(value => {
+                  if (value != null ) {
+                    console.log('logging in username: ' + username)
+                    signUp();
+                  }
+              })
+      } catch (error) {
+          console.log(error)
+      }
+  }
+  const setData = async () => {
+    if(username.length < 5 || password.length < 8) {
+      Alert.alert('Warning!', "Invalid Input.")
+    } else {
+      try{
+        var user = {
+          Username: username,
+          Password: password
+        }
+
+        await AsyncStorage.setItem('UserData', JSON.stringify(user));
+        console.log('data stored successfully.' )
+        signUp();
+      } catch (error){
+        console.log(error)
+      }
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>plannr</Text>
       <Text style={styles.welcome}>Sign Up</Text>
-      <TextInput style={styles.input} placeholder="Username"/>
-      <TextInput style={styles.input} placeholder="Email"/>
-      <TextInput style={styles.input} placeholder="Password" secureTextEntry />
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        onChangeText={(value) => setUsername(value)}
+        />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        secureTextEntry 
+        onChangeText={(value) => setPassword(value)}/>
 
       {/* all the buttons are in the btnContainer view */}
       <View style={styles.btnContainer}>
-        <TouchableOpacity style={styles.userBtn}>
-          <Text style={styles.btnTxt} onPress={() => signUp()}>Create Account</Text>
+        <TouchableOpacity
+          style={styles.userBtn}
+          onPress={setData}>
+          <Text style={styles.btnTxt} >Create Account</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.userBtn} onPress={() => navigation.push("LoginScreen")}>

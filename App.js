@@ -14,6 +14,8 @@ import LoginScreen from './Screens/LoginScreen';
 import HomeScreen from './Screens/HomeScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import AddEventScreen from './Screens/AddEventScreen';
+import EventScreen from './Screens/EventScreen';
+
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
@@ -41,6 +43,7 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
     <HomeStack.Screen name="AddEventScreen" component={AddEventScreen}/>
     <HomeStack.Screen name="ProfileScreen" component={ProfileScreen}/>
+    <HomeStack.Screen name="EventScreen" component={EventScreen}/>
   </HomeStack.Navigator>
 
 )

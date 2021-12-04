@@ -1,20 +1,52 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { AuthContext } from "../context";
 
 
 const ProfileScreen = (navigation) => {
     const {signOut} = React.useContext(AuthContext);
     
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    const getData = () => {
+        try {
+            AsyncStorage.getItem('UserData')
+                .then(value => {
+                    if (value != null ) {
+                        let user = JSON.parse(value);
+                        setUsername(user.Username);
+                        setPassword(user.Password);
+                    }
+                })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const removeData = async () => {
+        try {
+            await AsyncStorage.clear();
+            signOut();
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <View style={styles.container}>
             <Text style={styles.label}>Profile</Text>
-            <Text style={styles.infoText}> Firstname Lastname ~{"\n"} Username {"\n"} Email</Text>
+            <Text style={styles.infoText}> Welcome {username}!</Text>
             <View style={styles.btnContainer}>
                 <TouchableOpacity style={styles.logoutBtn}>
-                    <Text style={styles.btnTxt} name="Logout" onPress={() => signOut()}>Logout</Text>
+                    <Text style={styles.btnTxt} name="Logout" onPress={removeData}>Logout</Text>
                 </TouchableOpacity>
             </View>
         </View>

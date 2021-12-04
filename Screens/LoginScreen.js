@@ -23,6 +23,7 @@ const LoginScreen = ({navigation}) => {
               
               //this is where I can't access the navigation, it kept giving me the error of nested navigators
               //navigation.push("HomeScreen")
+              login()
               navigation.navigate("App", {screen: "HomeScreen"});
 
           } catch (e) {
@@ -32,7 +33,7 @@ const LoginScreen = ({navigation}) => {
         }
     }
 
-    // const {login} = React.useContext(AuthContext);
+  const {login} = React.useContext(AuthContext);
     
   return (
     <View style={styles.container}>

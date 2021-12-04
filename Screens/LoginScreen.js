@@ -12,19 +12,23 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({navigation}) => {
 
+    const {login} = React.useContext(AuthContext);
+
     const [loginUser, setLoginUser] = useState('');
+    const [loginPassword, setLoginPassword] = useState('');
 
     const setData = async () => {
-        if (loginUser.length == 0) {
-            Alert.alert('Please enter your username')
+        //error: logs in even without password
+        if (loginUser.length == 0 && loginPassword.length == 0) {
+            Alert.alert('Please enter your username and password')
         } else {
             try {
-              await AsyncStorage.setItem('UserName', loginUser);
+              //this stores the username and password in async storage
+              await AsyncStorage.setItem('Username', loginUser);
+              await AsyncStorage.setItem('Password', loginPassword);
               
-              //this is where I can't access the navigation, it kept giving me the error of nested navigators
-              //navigation.push("HomeScreen")
+              // this allows the user to navigate to the next screen
               login()
-              navigation.navigate("App", {screen: "HomeScreen"});
 
           } catch (e) {
             // saving error
@@ -33,8 +37,6 @@ const LoginScreen = ({navigation}) => {
         }
     }
 
-  const {login} = React.useContext(AuthContext);
-    
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>plannr</Text>
@@ -48,7 +50,11 @@ const LoginScreen = ({navigation}) => {
       {/* <Animatable.View animation="fadeInLeft" duration={500}/> */}
       {/* <Text style={styles.errorMsg}> Invalid Username. </Text> */}
 
-      <TextInput style={styles.input} placeholder="Password" secureTextEntry />
+      <TextInput 
+            style={styles.input}
+            placeholder="Password"
+            onChangeText={(value)=>setLoginPassword(value)}
+            secureTextEntry/>
 
       <View style={styles.btnContainer}>
         

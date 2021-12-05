@@ -5,12 +5,14 @@ const AddEventScreen = ({navigation}) => {
 
     const [eventName, onChangeEventName] = React.useState('');
         return (
+            <View style={styles.container}>
             <TextInput
                 style={styles.input}
                 onChangeText={onChangeEventName}
                 value={eventName}
                 placeholder={'Event Name'}
             />
+            </View>
         )            
 }
 

@@ -70,7 +70,7 @@ const CalendarScreen = ({navigation}) => {
                     <AddEventScreen/>
                     <TouchableOpacity style={styles.button} >
                         <Text style={styles.buttonText} 
-                        name="addevent" onPress={() => navigation.push('AddEventScreen')}>Next</Text>
+                         onPress={() => navigation.push("AddEventScreen")}>Next</Text>
                     </TouchableOpacity>
 
                     {/* <TouchableOpacity style={styles.button}>

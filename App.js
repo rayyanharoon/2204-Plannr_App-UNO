@@ -49,7 +49,30 @@ const HomeStackScreen = () => (
 )
 
 const TabScreen = () => (
-  <Tabs.Navigator screenOptions={{headerShown:false}} >
+  <Tabs.Navigator screenOptions={{headerShown:false}}>
+  {/* screenOptions={({route})=>({
+    tabBarIcon:({focused, size, color})=>{
+      let iconName;
+      if(route.name==='HomeScreen') {
+        iconName='home';
+        size = focused?25:20;
+        color = focused?'#f0f':'#555';
+      } else if(route.name==='AddEvent') {
+        iconName='calendar';
+        size = focused?25:20;
+      } else if(route.name==='ProfileScreen') {
+        iconName='user';
+        size = focused?25:20;
+      }
+      return(
+        <FontAwesome5
+          name={iconName}
+          size={size}
+          color={color}
+        />
+      )
+    }
+  })}} */}
     <Tabs.Screen name="Home" component={HomeStackScreen} /> 
     <Tabs.Screen name="Create an Event" component={AddEventScreen}/> 
     <Tabs.Screen name="My Profile" component={ProfileScreen} />

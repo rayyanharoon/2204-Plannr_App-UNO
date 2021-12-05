@@ -15,7 +15,7 @@ const AddEventScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
 
-        <Text style={styles.title}>Create An Event</Text>
+        <Text style={styles.title}>Create an Event</Text>
 
         <TextInput
             style={styles.input}
@@ -76,12 +76,12 @@ const AddEventScreen = ({navigation}) => {
         {/* this should be a drop down menu */}
         <Picker
             selectedValue={selectedValue}
-            style={{ height: 50, width: 150 }}
+            style={{ height: 50, width: 150, color:'#fff' }}
             onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
         >
-            <Picker.Item label="High" value="high" />
-            <Picker.Item label="Medium" value="medium" />
-            <Picker.Item label="Low" value="low" />
+            <Picker.Item label="High" value="high" color="#fff" />
+            <Picker.Item label="Medium" value="medium" color="#fff" />
+            <Picker.Item label="Low" value="low" color="#fff" />
       </Picker>
 
             <View style={styles.buttonContainer}>
@@ -100,7 +100,7 @@ const AddEventScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#1e90ff',
+        backgroundColor: '#2B4162',
         //centers the text field in the screen
         alignItems: 'center',
         //places the text fields in the middle of the screen
@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         margin: 10,
         color: '#fff',
+        fontWeight: 'bold'
     },
     buttonContainer: {
         // stacks the components in the container 

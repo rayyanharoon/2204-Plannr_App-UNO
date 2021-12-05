@@ -50,9 +50,9 @@ const HomeStackScreen = () => (
 
 const TabScreen = () => (
   <Tabs.Navigator screenOptions={{headerShown:false}} >
-    <Tabs.Screen name="home" component={HomeStackScreen} /> 
-    <Tabs.Screen name="add events" component={AddEventScreen}/> 
-    <Tabs.Screen name="my profile" component={ProfileScreen} />
+    <Tabs.Screen name="Home" component={HomeStackScreen} /> 
+    <Tabs.Screen name="Create an Event" component={AddEventScreen}/> 
+    <Tabs.Screen name="My Profile" component={ProfileScreen} />
   </Tabs.Navigator>
 
 )

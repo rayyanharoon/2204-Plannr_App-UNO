@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Picker} from 'react-native';
+import AddEventScreen from './AddEventScreen';
 
 //adding the calendar template
 import {Calendar} from 'react-native-calendars';
@@ -66,9 +67,10 @@ const CalendarScreen = ({navigation}) => {
             </Picker>
 
                 <View style={styles.buttonContainer}>
-
+                    <AddEventScreen/>
                     <TouchableOpacity style={styles.button} >
-                        <Text style={styles.buttonText} name="addevent" onPress={() => navigation.push('AddEventScreen')}>Next</Text>
+                        <Text style={styles.buttonText} 
+                        name="addevent" onPress={() => navigation.push('AddEventScreen')}>Next</Text>
                     </TouchableOpacity>
 
                     {/* <TouchableOpacity style={styles.button}>

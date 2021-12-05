@@ -80,7 +80,6 @@ const HomeScreen = ({navigation}) => {
           <View style={styles.addWrapper}>
             <Text style={styles.addText}>+</Text>
           </View>
-
         </TouchableOpacity>
 
       </KeyboardAvoidingView>

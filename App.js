@@ -51,9 +51,9 @@ const HomeStackScreen = () => (
 
 const TabScreen = () => (
   <Tabs.Navigator screenOptions={{headerShown:false}} >
-    <Tabs.Screen name="HomeScreen" component={HomeStackScreen} /> 
-    <Tabs.Screen name="CalendarScreen" component={CalendarScreen}/> 
-    <Tabs.Screen name="ProfileScreen" component={ProfileScreen} />
+    <Tabs.Screen name="Home Screen" component={HomeStackScreen} /> 
+    <Tabs.Screen name="Calendar Screen" component={CalendarScreen}/> 
+    <Tabs.Screen name="Profile Screen" component={ProfileScreen} />
   </Tabs.Navigator>
 
 )

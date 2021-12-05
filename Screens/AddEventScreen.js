@@ -11,8 +11,7 @@ const AddEventScreen = ({navigation}) => {
                 value={eventName}
                 placeholder={'Event Name'}
             />
-        )
-            
+        )            
 }
 
 const styles = StyleSheet.create({

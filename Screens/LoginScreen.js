@@ -53,7 +53,7 @@ const LoginScreen = ({navigation}) => {
         </TouchableOpacity>
 
         {/* sign up button */}
-        <TouchableOpacity style={styles.userBtn} >
+        <TouchableOpacity style={styles.userBtn2} >
           <Text style={styles.btnTxt} name="signUp" onPress={() => navigation.push("SignUpScreen")}>Sign up</Text>
         </TouchableOpacity>
       </View>
@@ -65,7 +65,7 @@ const LoginScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1e90ff',
+    backgroundColor: '#2B4162',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -74,12 +74,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
     color: '#fff',
-    fontFamily: 'monospace'
+    fontFamily: 'Helvetica',
+    fontWeight: 'bold',
   },
   welcome: {
-    fontSize: 30,
+    fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    fontFamily: 'Helvetica',
     color: '#fff',
   },
   input: {
@@ -98,6 +100,13 @@ const styles = StyleSheet.create({
     },
   userBtn: {
     backgroundColor: '#ffd700',
+    padding: 15,
+    width: "45%",
+    marginBottom: 10,
+    borderRadius: 10
+  },
+  userBtn2: {
+    backgroundColor: '#CD9D51',
     padding: 15,
     width: "45%",
     marginBottom: 10,

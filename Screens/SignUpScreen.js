@@ -72,7 +72,7 @@ const SignUpScreen = ({navigation}) => {
           <Text style={styles.btnTxt} >Create Account</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.userBtn} onPress={() => navigation.push("LoginScreen")}>
+        <TouchableOpacity style={styles.userBtn2} onPress={() => navigation.push("LoginScreen")}>
           <Text style={styles.btnTxt}>Cancel</Text>
         </TouchableOpacity>
       </View>
@@ -83,7 +83,7 @@ const SignUpScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1e90ff',
+    backgroundColor: '#2B4162',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -92,11 +92,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
     color: '#fff',
-    fontFamily: 'monospace'
-
+    fontFamily: 'Helvetica',
+    fontWeight: 'bold'
   },
   welcome: {
-    fontSize: 30,
+    fontSize: 20,
     textAlign: 'center',
     margin: 10,
     color: '#fff',
@@ -116,6 +116,13 @@ const styles = StyleSheet.create({
     },
   userBtn: {
     backgroundColor: '#ffd700',
+    padding: 15,
+    width: "45%",
+    marginBottom: 10,
+    borderRadius: 10
+  },
+  userBtn2: {
+    backgroundColor: '#CD9D51',
     padding: 15,
     width: "45%",
     marginBottom: 10,

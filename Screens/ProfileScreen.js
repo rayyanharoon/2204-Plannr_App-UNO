@@ -42,7 +42,7 @@ const ProfileScreen = (navigation) => {
     }
     return (
         <View style={styles.container}>
-            <Text style={styles.label}>Profile</Text>
+            <Text style={styles.label}>My Profile</Text>
             <Text style={styles.infoText}> Welcome {username}!</Text>
             <View style={styles.btnContainer}>
                 <TouchableOpacity style={styles.logoutBtn}>
@@ -57,7 +57,7 @@ const ProfileScreen = (navigation) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#2B4162',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -65,13 +65,14 @@ const styles = StyleSheet.create({
         fontSize: 45,
         textAlign: 'center',
         margin: 10,
-        color: '#000',
+        color: '#fff',
+        fontWeight: 'bold'
     },
     infoText: {
         fontSize: 25,
         textAlign: 'center',
         margin: 10,
-        color: '#000'
+        color: '#fff'
     },
     btnContainer: {
         flexDirection: 'column',

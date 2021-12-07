@@ -4,6 +4,7 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert} from 'react
 import { AuthContext } from "../context";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 const SignUpScreen = ({navigation}) => {
 
   const {signUp} = React.useContext(AuthContext);
@@ -11,36 +12,19 @@ const SignUpScreen = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  useEffect(() => {
-      getData();
-  }, []);
-
-    // automatically logins if theres a username already stored
-  const getData = () => {
-      try {
-          AsyncStorage.getItem('UserData')
-              .then(value => {
-                  if (value != null ) {
-                    console.log('logging in username: ' + username)
-                    signUp();
-                  }
-              })
-      } catch (error) {
-          console.log(error)
-      }
-  }
   const setData = async () => {
-    if(username.length < 5 || password.length < 8) {
+    if(username.length < 6 || password.length < 6) {
       Alert.alert('Warning!', "Invalid Input.")
     } else {
       try{
         var user = {
           Username: username,
-          Password: password
+          Password: password,
+          IsLoggedIn: true
         }
 
         await AsyncStorage.setItem('UserData', JSON.stringify(user));
-        console.log('data stored successfully.' )
+        console.log(user)
         signUp();
       } catch (error){
         console.log(error)
@@ -80,10 +64,11 @@ const SignUpScreen = ({navigation}) => {
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1e90ff',
+    backgroundColor: '#2B4162',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -92,11 +77,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
     color: '#fff',
-    fontFamily: 'monospace'
-
+    // fontFamily: 'Helvetica',
+    fontWeight: 'bold'
   },
   welcome: {
-    fontSize: 30,
+    fontSize: 20,
     textAlign: 'center',
     margin: 10,
     color: '#fff',
@@ -116,6 +101,13 @@ const styles = StyleSheet.create({
     },
   userBtn: {
     backgroundColor: '#ffd700',
+    padding: 15,
+    width: "45%",
+    marginBottom: 10,
+    borderRadius: 10
+  },
+  userBtn2: {
+    backgroundColor: '#CD9D51',
     padding: 15,
     width: "45%",
     marginBottom: 10,

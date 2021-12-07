@@ -57,7 +57,7 @@ const HomeScreen = ({navigation}) => {
     <View style={{backgroundColor: "#000000aa", flex: 1}}>
         <View style={{backgroundColor: "#ffffff", margin: 50, padding: 40, borderRadius: 10, flex: 1}}> 
         <Text stlye={{fontSize: 50}}> Modal Text</Text>
-        <ProfileScreen/>
+        {/* <ProfileScreen/> */}
         <Button title="close modal" onPress={()=>{setModalVisibility(!isModalVisible)}}/>
         </View>
         
@@ -91,7 +91,7 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8EAED',
+    backgroundColor: '#2B4162',
   },
   taskWrapper: {
     paddingTop: 50,
@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: '#fff',
     paddingBottom:10
   },
   items: {

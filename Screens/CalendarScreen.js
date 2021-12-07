@@ -1,6 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Picker} from 'react-native';
+<<<<<<< HEAD
+=======
+import AddEventScreen from './AddEventScreen';
+>>>>>>> b7e4ae5cb6c9c777c40419601b6253e878651e51
 
 //adding the calendar template
 import {Calendar} from 'react-native-calendars';
@@ -54,10 +58,11 @@ const CalendarScreen = ({navigation}) => {
                 />
 
             {/* this should be a drop down menu */}
-            <Picker style={styles.pickerStyle}
+            <Picker
                 selectedValue={selectedValue}
                 style={{ height: 50, width: 150 }}
-                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+            >
                 <Picker.Item label="High" value="high" />
                 <Picker.Item label="Medium" value="medium" />
                 <Picker.Item label="Low" value="low" />
@@ -82,6 +87,32 @@ const styles = StyleSheet.create({
         //places the text fields in the middle of the screen
         justifyContent: 'center',
     },
+    input: {
+        width: "90%",
+        backgroundColor: '#fff',
+        padding: 15,
+        marginBottom: 10,
+        borderRadius: 10
+    },
+    inputCalendar: {
+        width: "90%",
+        backgroundColor: '#fff',
+        padding: 15,
+        //aligned with calendar / calendar is a template
+        marginBottom: -17,
+        borderRadius: 10,
+        color: 'black'
+    },
+    //don't know how to change the background to white
+    // inputDropdown: {
+    //     height: 50,
+    //     width: 150,
+    //     backgroundColor: '#fff',
+    //     padding: 15,
+    //     marginBottom: 10,
+    //     borderRadius: 10,
+    //     alignItems: 'center'
+    // },
     title: {
         fontSize: 30,
         textAlign: 'center',
@@ -91,6 +122,9 @@ const styles = StyleSheet.create({
         fontFamily: 'monospace'
     },
     buttonContainer: {
+    },
+    buttonContainer: {
+        // stacks the components in the container 
         flexDirection: 'column',
         alignItems: 'center',
         width: '90%'
@@ -105,6 +139,11 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 18,
         textAlign:'center',
+        borderRadius: 10
+    },
+    buttonText: {
+        fontSize: 18,
+        textAlign:'center'
     },
     calendar: {
         borderWidth: 0,

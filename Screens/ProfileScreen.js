@@ -4,13 +4,13 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { AuthContext } from "../context";
 
-
-const ProfileScreen = ({navigation}) => {
-
+const ProfileScreen = (navigation) => {
     const {signOut} = React.useContext(AuthContext);
     
-    const [loginUser, setLoginUser] = useState('');
-    const [loginPassword, setLoginPassword] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState('');
+
 
     useEffect(() => {
         getData();
@@ -21,9 +21,10 @@ const ProfileScreen = ({navigation}) => {
             AsyncStorage.getItem('Username')
                 .then(value => {
                     if (value != null ) {
-                        //let user = JSON.parse(value);
-                        setLoginUser(value);
-                        setLoginPassword(value);
+                        let user = JSON.parse(value);
+                        setUsername(user.Username);
+                        setPassword(user.Password);
+                        setIsLoggedIn(user.IsLoggedIn);
                     }
                 })
         } catch (e) {
@@ -32,8 +33,18 @@ const ProfileScreen = ({navigation}) => {
     }
 
     const removeData = async () => {
-        try {
-            await AsyncStorage.clear();
+    // const removeData = () => {
+            // await AsyncStorage.clear();
+        try{
+            var user = {
+                Username: username,
+                Password: password,
+                IsLoggedIn: false
+            }
+            await AsyncStorage.setItem('UserData', JSON.stringify(user));
+           
+            setIsLoggedIn('false');
+            console.log(user)
             signOut();
         } catch (e) {
             console.log(e);
@@ -56,7 +67,7 @@ const ProfileScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#2B4162',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -64,13 +75,14 @@ const styles = StyleSheet.create({
         fontSize: 45,
         textAlign: 'center',
         margin: 10,
-        color: '#000',
+        color: '#fff',
+        fontWeight: 'bold'
     },
     infoText: {
         fontSize: 25,
         textAlign: 'center',
         margin: 10,
-        color: '#000'
+        color: '#fff'
     },
     btnContainer: {
         flexDirection: 'column',

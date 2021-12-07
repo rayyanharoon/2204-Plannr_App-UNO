@@ -1,10 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Picker} from 'react-native';
-<<<<<<< HEAD
-=======
-import AddEventScreen from './AddEventScreen';
->>>>>>> b7e4ae5cb6c9c777c40419601b6253e878651e51
 
 //adding the calendar template
 import {Calendar} from 'react-native-calendars';

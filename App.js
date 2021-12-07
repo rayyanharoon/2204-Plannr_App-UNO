@@ -75,7 +75,7 @@ const TabScreen = () => (
     }
   })}} */}
     <Tabs.Screen name="Home" component={HomeStackScreen} /> 
-    <Tabs.Screen name="Create an Event" component={AddEventScreen}/> 
+    <Tabs.Screen name="Calendar" component={AddEventScreen}/> 
     <Tabs.Screen name="My Profile" component={ProfileScreen} />
   </Tabs.Navigator>
 

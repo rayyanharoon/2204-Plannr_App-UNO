@@ -4,13 +4,12 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { AuthContext } from "../context";
 
-
 const ProfileScreen = (navigation) => {
     const {signOut} = React.useContext(AuthContext);
     
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const [isLoggedIn, setIsLoggedIn] = useState('');
 
 
     useEffect(() => {
@@ -25,6 +24,7 @@ const ProfileScreen = (navigation) => {
                         let user = JSON.parse(value);
                         setUsername(user.Username);
                         setPassword(user.Password);
+                        setIsLoggedIn(user.IsLoggedIn);
                     }
                 })
         } catch (error) {
@@ -33,8 +33,18 @@ const ProfileScreen = (navigation) => {
     }
 
     const removeData = async () => {
-        try {
-            await AsyncStorage.clear();
+    // const removeData = () => {
+            // await AsyncStorage.clear();
+        try{
+            var user = {
+                Username: username,
+                Password: password,
+                IsLoggedIn: false
+            }
+            await AsyncStorage.setItem('UserData', JSON.stringify(user));
+           
+            setIsLoggedIn('false');
+            console.log(user)
             signOut();
         } catch (error) {
             console.log(error);
@@ -42,7 +52,7 @@ const ProfileScreen = (navigation) => {
     }
     return (
         <View style={styles.container}>
-            <Text style={styles.label}>My Profile</Text>
+            <Text style={styles.label}>Profile</Text>
             <Text style={styles.infoText}> Welcome {username}!</Text>
             <View style={styles.btnContainer}>
                 <TouchableOpacity style={styles.logoutBtn}>

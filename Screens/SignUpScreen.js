@@ -4,43 +4,28 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert} from 'react
 import { AuthContext } from "../context";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 const SignUpScreen = ({navigation}) => {
 
   const {signUp} = React.useContext(AuthContext);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState('');
 
-  useEffect(() => {
-      getData();
-  }, []);
-
-    // automatically logins if theres a username already stored
-  const getData = () => {
-      try {
-          AsyncStorage.getItem('UserData')
-              .then(value => {
-                  if (value != null ) {
-                    console.log('logging in username: ' + username)
-                    signUp();
-                  }
-              })
-      } catch (error) {
-          console.log(error)
-      }
-  }
   const setData = async () => {
-    if(username.length < 5 || password.length < 8) {
+    if(username.length < 1 || password.length < 1) {
       Alert.alert('Warning!', "Invalid Input.")
     } else {
       try{
         var user = {
           Username: username,
-          Password: password
+          Password: password,
+          IsLoggedIn: true
         }
 
         await AsyncStorage.setItem('UserData', JSON.stringify(user));
-        console.log('data stored successfully.' )
+        console.log(user)
         signUp();
       } catch (error){
         console.log(error)
@@ -72,13 +57,14 @@ const SignUpScreen = ({navigation}) => {
           <Text style={styles.btnTxt} >Create Account</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.userBtn2} onPress={() => navigation.push("LoginScreen")}>
+        <TouchableOpacity style={styles.userBtn} onPress={() => navigation.push("LoginScreen")}>
           <Text style={styles.btnTxt}>Cancel</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -92,7 +78,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
     color: '#fff',
-    fontFamily: 'Helvetica',
+    // fontFamily: 'Helvetica',
     fontWeight: 'bold'
   },
   welcome: {

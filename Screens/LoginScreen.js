@@ -1,65 +1,95 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
 import { AuthContext } from "../context";
-// import {Animatable} from 'react-native-animatable';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-let usernameTF;
-let passwordTF;
-
 const LoginScreen = ({navigation}) => {
+  const {login} = React.useContext(AuthContext);
+    
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [unInput, setUNInput] = useState('');
+  const [pwInput, setPWInput] = useState('')
+  const [isLoggedIn, setIsLoggedIn] = useState('');
 
-    const [loginUser, setLoginUser] = useState('');
+  useEffect(() => {
+      getData();
+  }, []);
 
-    const setData = async () => {
-        if (loginUser.length == 0) {
-            Alert.alert('Please enter your username')
-        } else {
-            try {
-            await AsyncStorage.setItem('UserName', loginUser)
-            navigation.push('HomeScreen')
-          } catch (e) {
-            // saving error
-            console.log(e)
-          }
-        }
+  const getData = () => {
+    try {
+      
+        AsyncStorage.getItem('UserData')
+            .then(value => {
+                if (value != null ) {
+                    let user = JSON.parse(value);
+                    setUsername(user.Username);
+                    setPassword(user.Password);
+                    setIsLoggedIn(user.IsLoggedIn);
+                    console.log("getData successful")
+                    
+                }
+                // if (isLoggedIn == true) {
+                //   login();
+                // } 
+            })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+  const validateLogin = () => {
+    if (unInput != username || pwInput != password) {
+            Alert.alert('Warning!', "Invalid Input.")
+    } else {
+      console.log("login successful")
+      login();
     }
 
-    // const {login} = React.useContext(AuthContext);
-    
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>plannr</Text>
       <Text style={styles.welcome}>Login</Text>
-      <TextInput 
-          style={styles.input} 
-          placeholder="Username"
-          onChangeText={(value)=>setLoginUser(value)} 
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        onChangeText={(value) => setUNInput(value)}
         />
-      
-      {/* <Animatable.View animation="fadeInLeft" duration={500}/> */}
-      {/* <Text style={styles.errorMsg}> Invalid Username. </Text> */}
 
-      <TextInput style={styles.input} placeholder="Password" secureTextEntry />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        secureTextEntry 
+        onChangeText={(value) => setPWInput(value)}/>
 
       <View style={styles.btnContainer}>
         
         {/* login button */}
-        <TouchableOpacity style={styles.userBtn}>
-          <Text  style={styles.btnTxt} name="login" onPress={setData}>Login</Text>
+        <TouchableOpacity
+          style={styles.userBtn}
+          onPress={validateLogin}>
+          <Text
+            style={styles.btnTxt}
+            name="login">Login</Text>
         </TouchableOpacity>
 
         {/* sign up button */}
-        <TouchableOpacity style={styles.userBtn2} >
-          <Text style={styles.btnTxt} name="signUp" onPress={() => navigation.push("SignUpScreen")}>Sign up</Text>
+        <TouchableOpacity 
+          style={styles.userBtn2}
+          onPress={() => navigation.push("SignUpScreen")}>
+          <Text
+            style={styles.btnTxt}
+            name="signUp"
+            >Sign up</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
+
 
 
 const styles = StyleSheet.create({
@@ -74,14 +104,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
     color: '#fff',
-    fontFamily: 'Helvetica',
+    // fontFamily: 'Helvetica',
     fontWeight: 'bold',
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-    fontFamily: 'Helvetica',
+    // fontFamily: 'Arial',
     color: '#fff',
   },
   input: {

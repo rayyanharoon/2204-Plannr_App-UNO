@@ -11,10 +11,9 @@ const SignUpScreen = ({navigation}) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState('');
 
   const setData = async () => {
-    if(username.length < 1 || password.length < 1) {
+    if(username.length < 6 || password.length < 6) {
       Alert.alert('Warning!', "Invalid Input.")
     } else {
       try{

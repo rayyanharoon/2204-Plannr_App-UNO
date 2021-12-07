@@ -3,10 +3,8 @@ import {View, Text, TextInput, StyleSheet} from 'react-native';
 
 const AddEventScreen = ({navigation}) => {
 
-<<<<<<< HEAD
     const [eventName, onChangeEventName] = React.useState('');
         return (
-=======
     const [eventName, onChangeEventName] = React.useState('')
     const [description, onChangeDesc] = React.useState('')
 
@@ -16,20 +14,17 @@ const AddEventScreen = ({navigation}) => {
         <View style={styles.container}>
 
         <Text style={styles.title}>Create an Event</Text>
->>>>>>> b7e4ae5cb6c9c777c40419601b6253e878651e51
 
             <View style={styles.container}>
 
                 <Text style={styles.eventTitle}>Enter event name:</Text>
 
-<<<<<<< HEAD
                 <TextInput
                     style={styles.eventInput}
                     onChangeText={onChangeEventName}
                     value={eventName}
                     placeholder={'Event Name'}
                 />
-=======
         {/* going to change this to pop-up calendar or date picker */}
         <Text style={styles.inputCalendar}>Select due date</Text>
         <Calendar style={styles.calendar}
@@ -72,16 +67,16 @@ const AddEventScreen = ({navigation}) => {
             renderHeader={(date) => {/*Return JSX*/}}
             />
 
-        {/* this should be a drop down menu */}
-        <Picker
-            selectedValue={selectedValue}
-            style={{ height: 50, width: 150, color:'#fff' }}
-            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-        >
-            <Picker.Item label="High" value="high" color="#fff" />
-            <Picker.Item label="Medium" value="medium" color="#fff" />
-            <Picker.Item label="Low" value="low" color="#fff" />
-      </Picker>
+            {/* this should be a drop down menu */}
+            <Picker
+                selectedValue={selectedValue}
+                style={{ height: 50, width: 150, color:'#fff' }}
+                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                >
+                <Picker.Item label="High" value="high" color="#fff" />
+                <Picker.Item label="Medium" value="medium" color="#fff" />
+                <Picker.Item label="Low" value="low" color="#fff" />
+            </Picker>
 
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
@@ -89,10 +84,10 @@ const AddEventScreen = ({navigation}) => {
                     onPress={() => navigation.push("HomeScreen")}>
                     <Text style={styles.buttonText}>Save</Text>
                 </TouchableOpacity>
->>>>>>> b7e4ae5cb6c9c777c40419601b6253e878651e51
             </View>
-        )            
-}
+        )
+    </View>          
+})
 
 const styles = StyleSheet.create({
     container: {
@@ -117,7 +112,7 @@ const styles = StyleSheet.create({
         padding: 15,
         marginBottom: 10,
         borderRadius: 10
-    },
+    }
   });
 
 export default AddEventScreen;

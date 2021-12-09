@@ -56,7 +56,7 @@ const SignUpScreen = ({navigation}) => {
           <Text style={styles.btnTxt} >Create Account</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.userBtn} onPress={() => navigation.push("LoginScreen")}>
+        <TouchableOpacity style={styles.userBtn2} onPress={() => navigation.push("LoginScreen")}>
           <Text style={styles.btnTxt}>Cancel</Text>
         </TouchableOpacity>
       </View>

@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         padding: 15,
         marginBottom: 15,
-        orderRadius: 10
+        borderRadius: 10
     },
     buttonContainer: {
         // stacks the components in the container 

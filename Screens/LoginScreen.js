@@ -40,31 +40,6 @@ const LoginScreen = ({navigation}) => {
     }
 }
 
-    const {login} = React.useContext(AuthContext);
-
-    const [loginUser, setLoginUser] = useState('');
-    const [loginPassword, setLoginPassword] = useState('');
-
-    const setData = async () => {
-        //error: logs in even without password
-        if (loginUser.length == 0 && loginPassword.length == 0) {
-            Alert.alert('Please enter your username and password')
-        } else {
-            try {
-              //this stores the username and password in async storage
-              await AsyncStorage.setItem('Username', loginUser);
-              await AsyncStorage.setItem('Password', loginPassword);
-              
-              // this allows the user to navigate to the next screen
-              login()
-
-          } catch (e) {
-            // saving error
-            console.log(e)
-          }
-        }
-    }
-
   const validateLogin = () => {
     if (unInput != username || pwInput != password) {
             Alert.alert('Warning!', "Invalid Input.")
@@ -84,11 +59,6 @@ const LoginScreen = ({navigation}) => {
         onChangeText={(value) => setUNInput(value)}
         />
 
-      <TextInput 
-            style={styles.input}
-            placeholder="Password"
-            onChangeText={(value)=>setLoginPassword(value)}
-            secureTextEntry/>
       <TextInput
         style={styles.input}
         placeholder="Password"
@@ -176,6 +146,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center'
   }
+
+
 });
+
 
 export default LoginScreen;

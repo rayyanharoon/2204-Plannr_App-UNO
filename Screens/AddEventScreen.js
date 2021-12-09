@@ -19,38 +19,7 @@ const AddEventScreen = ({navigation}) => {
                     value={eventName}
                     placeholder={'Event Name'}
                 />
-                {/* going to change this to pop-up calendar or date picker */}
-                <Text style={styles.inputCalendar}>Select due date</Text>
-                <Calendar style={styles.calendar}
-                current={'2021-11-01'}
-                minDate={''}
-                maxDate={''}
-                onDayPress={(day) => {console.log('selected day', day)}}
-                monthFormat={"MMMM yyyy"}
-                onMonthChange={(month) => {console.log('month changed', month)}}
-                hideExtraDays={false}
-                disableMonthChange={false}
-                firstDay={0}
-                hideDayNames={false}
-                showWeekNumbers={false}
-                onPressArrowLeft={subtractMonth => subtractMonth()}
-                onPressArrowRight={addMonth => addMonth()}
-                disableArrowLeft={false}
-                disableArrowRight={false}
-                disableAllTouchEventsForDisabledDays={true}
-                />
-
-                {/* this should be a drop down menu */}
-                <Picker
-                    selectedValue={selectedValue}
-                    style={{ height: 50, width: 150, color:'#fff' }}
-                    onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-                    >
-                    <Picker.Item label="High" value="high" color="#fff" />
-                    <Picker.Item label="Medium" value="medium" color="#fff" />
-                    <Picker.Item label="Low" value="low" color="#fff" />
-                </Picker>
-
+                
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         style={styles.button}

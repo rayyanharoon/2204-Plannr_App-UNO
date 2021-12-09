@@ -3,12 +3,12 @@ import {View, Text, TextInput, StyleSheet} from 'react-native';
 
 const AddEventScreen = ({navigation}) => {
 
-    const [eventName, onChangeEventName] = React.useState('');
-        return (
+    const [eventName, onChangeEventName] = React.useState('')
+    const [description, onChangeDesc] = React.useState('')
 
-            <View style={styles.container}>
-
-                <Text style={styles.eventTitle}>Enter event name:</Text>
+    return (
+        <View style={styles.container}>
+            <Text style={styles.eventTitle}>Enter event name:</Text>
 
                 <TextInput
                     style={styles.eventInput}
@@ -16,8 +16,22 @@ const AddEventScreen = ({navigation}) => {
                     value={eventName}
                     placeholder={'Event Name'}
                 />
-            </View>
-        )            
+                <TextInput
+                    style={styles.descInput}
+                    onChangeText={onChangeDesc}
+                    value={description}
+                    placeholder={'Description'}
+                />
+                
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                        style={styles.saveBtn}
+                        onPress={() => navigation.push("EventScreen")}>
+                        <Text style={styles.buttonText}>Save</Text>
+                    </TouchableOpacity>
+                </View>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -42,8 +56,33 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         padding: 15,
         marginBottom: 10,
-        borderRadius: 10
+        orderRadius: 10
     },
+    descInput: {
+        width: "90%",
+        backgroundColor: '#fff',
+        padding: 15,
+        marginBottom: 15,
+        orderRadius: 10
+    },
+    buttonContainer: {
+        // stacks the components in the container 
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '90%'
+    },
+    saveBtn: {
+        backgroundColor: '#ffd700',
+        padding: 15,
+        width: "45%",
+        marginBottom: 10,
+        borderRadius: 10,
+    },
+    buttonText: {
+        fontSize: 18,
+        textAlign:'center',
+        borderRadius: 10
+    }
   });
 
 export default AddEventScreen;

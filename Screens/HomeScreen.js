@@ -30,15 +30,15 @@ const HomeScreen = ({navigation}) => {
 
      {/* today's tasks */}
     <View style={styles.taskWrapper}>
-      <Text style={styles.sectionTitle}> Today's tasks</Text>
+      <Text style={styles.sectionTitle}>Today's tasks</Text>
       <ScrollView>
       <View style={styles.items}>
         {/* this is where the tasks will go~~~ */}
         {
-          taskItems.map((item, index) => {
+          taskItems.map((event, index) => {
             return (
               <TouchableOpacity key={index} onPress={() => setModalVisibility(!isModalVisible)}>
-                <Task text={item} />
+                <Task text={event} />
 
               </TouchableOpacity>
             )

@@ -4,6 +4,7 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { AuthContext } from "../context";
 
+
 const ProfileScreen = (navigation) => {
     const {signOut} = React.useContext(AuthContext);
     
@@ -62,7 +63,6 @@ const ProfileScreen = (navigation) => {
         </View>
     );
 }
-
 
 const styles = StyleSheet.create({
     container: {

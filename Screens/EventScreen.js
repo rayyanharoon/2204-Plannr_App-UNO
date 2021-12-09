@@ -22,10 +22,9 @@ class EventScreen extends React.Component {
                 >
                     <View style={{backgroundColor: "#000000aa", flex: 1}}>
                         <View style={{backgroundColor: "#ffffff", margin: 50, padding: 40, borderRadius: 10, flex: 1}}> 
-                        <Text stlye={{fontSize: 50}}> Modal Text</Text>
-                        <Button title="close modal" onPress={()=>{this.setState({show:false})}}/>
+                            <Text stlye={{fontSize: 50}}> Modal Text</Text>
+                            <Button title="close modal" onPress={()=>{this.setState({show:false})}}/>
                         </View>
-                        
 
                     </View>
                     

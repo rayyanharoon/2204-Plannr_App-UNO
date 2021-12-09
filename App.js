@@ -13,11 +13,11 @@ import SignUpScreen from './Screens/SignUpScreen';
 import LoginScreen from './Screens/LoginScreen';
 import HomeScreen from './Screens/HomeScreen';
 import ProfileScreen from './Screens/ProfileScreen';
+import CalendarScreen from './Screens/CalendarScreen';
 import AddEventScreen from './Screens/AddEventScreen';
-import EventScreen from './Screens/EventScreen';
-
 
 const AuthStack = createStackNavigator();
+
 const AuthStackScreen = () => (
   <AuthStack.Navigator screenOptions={{headerShown:false}}>
     <AuthStack.Screen 
@@ -31,19 +31,20 @@ const AuthStackScreen = () => (
       component={SignUpScreen}
       options={{title: "Sign Up"}}
     />
+
   </AuthStack.Navigator>
+
 )
 
 const Tabs = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 
-
 const HomeStackScreen = () => (
   <HomeStack.Navigator screenOptions={{headerShown:false}} >
     <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
+    <HomeStack.Screen name="CalendarScreen" component={CalendarScreen}/>
     <HomeStack.Screen name="AddEventScreen" component={AddEventScreen}/>
     <HomeStack.Screen name="ProfileScreen" component={ProfileScreen}/>
-    <HomeStack.Screen name="EventScreen" component={EventScreen}/>
   </HomeStack.Navigator>
 
 )
@@ -74,13 +75,14 @@ const TabScreen = () => (
     }
   })}} */}
     <Tabs.Screen name="Home" component={HomeStackScreen} /> 
-    <Tabs.Screen name="Create an Event" component={AddEventScreen}/> 
+    <Tabs.Screen name="Calendar" component={AddEventScreen}/> 
     <Tabs.Screen name="My Profile" component={ProfileScreen} />
   </Tabs.Navigator>
 
 )
 
 const RootStack = createStackNavigator();
+
 const RootStackScreen = ({userToken}) => (
   <RootStack.Navigator screenOptions={{headerShown:false}}>
     {userToken ? (

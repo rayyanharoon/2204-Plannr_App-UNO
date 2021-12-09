@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Picker} from 'react-native';
-import AddEventScreen from './AddEventScreen';
 
 //adding the calendar template
 import {Calendar} from 'react-native-calendars';
@@ -15,43 +14,23 @@ const CalendarScreen = ({navigation}) => {
 
             <Text style={styles.title}>Select the date:</Text>
 
-
             {/* going to change this to pop-up calendar or date picker */}
             <Calendar style={styles.calendar}
-                // Initially visible month. Default = Date()
-                current={'2021-12-01'}
-                // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-                //if specific dates are inside it is greyed out
+                current={'2021-11-01'}
                 minDate={''}
-                // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
                 maxDate={''}
-                // Handler which gets executed on day press. Default = undefined
                 onDayPress={(day) => {console.log('selected day', day)}}
-                // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
                 monthFormat={"MMMM yyyy"}
-                // Handler which gets executed when visible month changes in calendar. Default = undefined
                 onMonthChange={(month) => {console.log('month changed', month)}}
-                // Do not show days of other months in month page. Default = false
                 hideExtraDays={false}
-                // If hideArrows = false and hideExtraDays = false do not switch month when tapping on greyed out
-                // day from another month that is visible in calendar page. Default = false
                 disableMonthChange={false}
-                // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday
-                //firstDay = {0} starts from Sunday
                 firstDay={0}
-                // Hide day names. Default = false
                 hideDayNames={false}
-                // Show week numbers to the left. Default = false
                 showWeekNumbers={false}
-                // Handler which gets executed when press arrow icon left. It receive a callback can go back month
                 onPressArrowLeft={subtractMonth => subtractMonth()}
-                // Handler which gets executed when press arrow icon right. It receive a callback can go next month
                 onPressArrowRight={addMonth => addMonth()}
-                // Disable left arrow. Default = false
                 disableArrowLeft={false}
-                // Disable right arrow. Default = false
                 disableArrowRight={false}
-                // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
                 disableAllTouchEventsForDisabledDays={true}
                 />
 
@@ -67,23 +46,14 @@ const CalendarScreen = ({navigation}) => {
             </Picker>
 
                 <View style={styles.buttonContainer}>
-                    <AddEventScreen/>
                     <TouchableOpacity style={styles.button} >
                         <Text style={styles.buttonText} 
-                        name="AddEventScreen" onPress={() => navigation.push('AddEventScreen')}>Next</Text>
+                        onPress={() => navigation.push("AddEventScreen")}>Next</Text>
                     </TouchableOpacity>
-
-                    {/* <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}
-                            name='next'
-                            onPress={() => navigation.push('AddEventScreen')}>Next</Text>
-                    </TouchableOpacity> */}
                 </View>
-
         </View>
     );
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -110,22 +80,13 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         color: 'black'
     },
-    //don't know how to change the background to white
-    // inputDropdown: {
-    //     height: 50,
-    //     width: 150,
-    //     backgroundColor: '#fff',
-    //     padding: 15,
-    //     marginBottom: 10,
-    //     borderRadius: 10,
-    //     alignItems: 'center'
-    // },
     title: {
         fontSize: 30,
         textAlign: 'center',
         marginTop: 20,
         marginBottom: 20,
         color: '#fff',
+        fontFamily: 'monospace'
     },
     buttonContainer: {
         // stacks the components in the container 
@@ -138,11 +99,12 @@ const styles = StyleSheet.create({
         padding: 15,
         width: "45%",
         marginBottom: 10,
-        borderRadius: 10
+        borderRadius: 10,
     },
     buttonText: {
         fontSize: 18,
-        textAlign:'center'
+        textAlign:'center',
+        borderRadius: 10
     },
     calendar: {
         borderWidth: 0,

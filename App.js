@@ -7,17 +7,18 @@ import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
 import { AuthContext } from './context';
 import SignUpScreen from './Screens/SignUpScreen';
 import LoginScreen from './Screens/LoginScreen';
 import HomeScreen from './Screens/HomeScreen';
 import ProfileScreen from './Screens/ProfileScreen';
-import CalendarScreen from './Screens/CalendarScreen';
 import AddEventScreen from './Screens/AddEventScreen';
+import EventScreen from './Screens/EventScreen';
+
 
 const AuthStack = createStackNavigator();
-
 const AuthStackScreen = () => (
   <AuthStack.Navigator screenOptions={{headerShown:false}}>
     <AuthStack.Screen 
@@ -31,58 +32,51 @@ const AuthStackScreen = () => (
       component={SignUpScreen}
       options={{title: "Sign Up"}}
     />
-
   </AuthStack.Navigator>
-
 )
 
 const Tabs = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 
+
 const HomeStackScreen = () => (
   <HomeStack.Navigator screenOptions={{headerShown:false}} >
     <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
-    <HomeStack.Screen name="CalendarScreen" component={CalendarScreen}/>
     <HomeStack.Screen name="AddEventScreen" component={AddEventScreen}/>
     <HomeStack.Screen name="ProfileScreen" component={ProfileScreen}/>
+    <HomeStack.Screen name="EventScreen" component={EventScreen}/>
   </HomeStack.Navigator>
 
 )
 
 const TabScreen = () => (
   <Tabs.Navigator screenOptions={{headerShown:false}}>
-  {/* screenOptions={({route})=>({
-    tabBarIcon:({focused, size, color})=>{
-      let iconName;
-      if(route.name==='HomeScreen') {
-        iconName='home';
-        size = focused?25:20;
-        color = focused?'#f0f':'#555';
-      } else if(route.name==='AddEvent') {
-        iconName='calendar';
-        size = focused?25:20;
-      } else if(route.name==='ProfileScreen') {
-        iconName='user';
-        size = focused?25:20;
-      }
-      return(
-        <FontAwesome5
-          name={iconName}
-          size={size}
-          color={color}
-        />
-      )
-    }
-  })}} */}
-    <Tabs.Screen name="Home" component={HomeStackScreen} /> 
-    <Tabs.Screen name="Calendar" component={AddEventScreen}/> 
-    <Tabs.Screen name="My Profile" component={ProfileScreen} />
+    <Tabs.Screen 
+      name="Home" 
+      component={HomeStackScreen} 
+      options={{
+        tabBarLabel:'Home',
+        tabBarIcon: ({color, size}) => (<Ionicons name='home' color={color} size={size}/>),
+      }} /> 
+    <Tabs.Screen
+      name="Calendar" 
+      component={AddEventScreen}
+      options={{
+        tabBarLabel:'Calendar',
+        tabBarIcon: ({color, size}) => (<Ionicons name='calendar' color={color} size={size}/>)
+      }}/> 
+    <Tabs.Screen 
+      name="My Profile" 
+      component={ProfileScreen}
+      options={{
+        tabBarLabel:'Profile',
+        tabBarIcon: ({color, size}) => (<Ionicons name='book' color={color} size={size}/>)
+      }} />
   </Tabs.Navigator>
 
 )
 
 const RootStack = createStackNavigator();
-
 const RootStackScreen = ({userToken}) => (
   <RootStack.Navigator screenOptions={{headerShown:false}}>
     {userToken ? (

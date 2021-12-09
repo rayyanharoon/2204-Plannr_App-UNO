@@ -18,26 +18,26 @@ const LoginScreen = ({navigation}) => {
       getData();
   }, []);
 
-  const getData = () => {
-    try {
-      
-        AsyncStorage.getItem('UserData')
-            .then(value => {
-                if (value != null ) {
-                    let user = JSON.parse(value);
-                    setUsername(user.Username);
-                    setPassword(user.Password);
-                    setIsLoggedIn(user.IsLoggedIn);
-                    console.log("getData successful")
-                    
-                }
-                // if (isLoggedIn == true) {
-                //   login();
-                // } 
-            })
-    } catch (error) {
-        console.log(error)
-    }
+    const getData = () => {
+      try {
+        
+          AsyncStorage.getItem('UserData')
+              .then(value => {
+                  if (value != null ) {
+                      let user = JSON.parse(value);
+                      setUsername(user.Username);
+                      setPassword(user.Password);
+                      setIsLoggedIn(user.IsLoggedIn);
+                      console.log("getData successful")
+                      
+                  }
+                  // if (isLoggedIn == true) {
+                  //   login();
+                  // } 
+              })
+      } catch (error) {
+          console.log(error)
+      }
 }
 
   const validateLogin = () => {
@@ -89,8 +89,6 @@ const LoginScreen = ({navigation}) => {
     </View>
   );
 }
-
-
 
 const styles = StyleSheet.create({
   container: {

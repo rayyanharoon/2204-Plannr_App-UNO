@@ -1,10 +1,41 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AddEventScreen = ({navigation}) => {
 
+    const [event, setEventName] = useState('')
+    const [desc, setDesc] = useState('')
+
     const [eventName, onChangeEventName] = React.useState('')
     const [description, onChangeDesc] = React.useState('')
+
+    useEffect(() => {
+        getEventData();
+    }, []);
+
+    const getEventData = () => {
+        try {
+          
+            AsyncStorage.getItem('EventData')
+                .then(value => {
+                    if (value != null ) {
+                        let user = JSON.parse(value);
+                        setEventName(user.eventname);
+                        setDesc(user.description);
+                        //setIsLoggedIn(user.IsLoggedIn);
+                        console.log("EventData successful")
+                        
+                    }
+                    // if (isLoggedIn == true) {
+                    //   login();
+                    // } 
+                })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -12,7 +43,7 @@ const AddEventScreen = ({navigation}) => {
 
                 <TextInput
                     style={styles.eventInput}
-                    onChangeText={onChangeEventName}
+                    onChangeText={(value) => onChangeEventName(value)}
                     value={eventName}
                     placeholder={'Event Name'}
                 />
@@ -26,7 +57,7 @@ const AddEventScreen = ({navigation}) => {
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         style={styles.saveBtn}
-                        onPress={() => navigation.navigate("EventScreen")}>
+                        onPress={() => navigation.navigate('HomeScreen')}>
                         <Text style={styles.buttonText}>Save</Text>
                     </TouchableOpacity>
                 </View>

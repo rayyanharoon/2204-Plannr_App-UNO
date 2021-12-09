@@ -73,10 +73,8 @@ const HomeScreen = ({navigation}) => {
       >
 
         
-        {/* <TextInput style={styles.input} placeholder={'Write a task'} value={task} onChangeText={text => setTask(text)}/> */}
-
         {/* add button just change on press func so it leads to add events */}
-        <TouchableOpacity onPress={() => handleAddTask()}>
+        <TouchableOpacity onPress={() => navigation.navigate('AddEventScreen')}>
           <View style={styles.addWrapper}>
             <Text style={styles.addText}>+</Text>
           </View>

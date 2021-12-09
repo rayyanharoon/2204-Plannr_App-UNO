@@ -80,16 +80,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         color: 'black'
     },
-    //don't know how to change the background to white
-    // inputDropdown: {
-    //     height: 50,
-    //     width: 150,
-    //     backgroundColor: '#fff',
-    //     padding: 15,
-    //     marginBottom: 10,
-    //     borderRadius: 10,
-    //     alignItems: 'center'
-    // },
     title: {
         fontSize: 30,
         textAlign: 'center',
@@ -97,8 +87,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         color: '#fff',
         fontFamily: 'monospace'
-    },
-    buttonContainer: {
     },
     buttonContainer: {
         // stacks the components in the container 
@@ -117,10 +105,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign:'center',
         borderRadius: 10
-    },
-    buttonText: {
-        fontSize: 18,
-        textAlign:'center'
     },
     calendar: {
         borderWidth: 0,

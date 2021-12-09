@@ -16,6 +16,7 @@ import HomeScreen from './Screens/HomeScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import AddEventScreen from './Screens/AddEventScreen';
 import EventScreen from './Screens/EventScreen';
+import CalendarScreen from './Screens/CalendarScreen';
 
 
 const AuthStack = createStackNavigator();
@@ -45,6 +46,7 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="AddEventScreen" component={AddEventScreen}/>
     <HomeStack.Screen name="ProfileScreen" component={ProfileScreen}/>
     <HomeStack.Screen name="EventScreen" component={EventScreen}/>
+    <HomeStack.Screen name="CalendarScreen" component={CalendarScreen}/>
   </HomeStack.Navigator>
 
 )
@@ -60,7 +62,7 @@ const TabScreen = () => (
       }} /> 
     <Tabs.Screen
       name="Calendar" 
-      component={AddEventScreen}
+      component={CalendarScreen}
       options={{
         tabBarLabel:'Calendar',
         tabBarIcon: ({color, size}) => (<Ionicons name='calendar' color={color} size={size}/>)

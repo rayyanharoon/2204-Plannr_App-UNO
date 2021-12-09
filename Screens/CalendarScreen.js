@@ -35,7 +35,7 @@ const CalendarScreen = ({navigation}) => {
                 />
 
             {/* this should be a drop down menu */}
-            <Picker
+            {/* <Picker
                 selectedValue={selectedValue}
                 style={{ height: 50, width: 150 }}
                 onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
@@ -43,7 +43,7 @@ const CalendarScreen = ({navigation}) => {
                 <Picker.Item label="High" value="high" />
                 <Picker.Item label="Medium" value="medium" />
                 <Picker.Item label="Low" value="low" />
-            </Picker>
+            </Picker> */}
 
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.button} >
@@ -58,7 +58,7 @@ const CalendarScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#1e90ff',
+        backgroundColor: '#2B4162',
         //centers the text field in the screen
         alignItems: 'center',
         //places the text fields in the middle of the screen
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 20,
         color: '#fff',
-        fontFamily: 'monospace'
+        fontWeight: 'bold'
     },
     buttonContainer: {
         // stacks the components in the container 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 
 const AddEventScreen = ({navigation}) => {
 
@@ -26,7 +26,7 @@ const AddEventScreen = ({navigation}) => {
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         style={styles.saveBtn}
-                        onPress={() => navigation.push("EventScreen")}>
+                        onPress={() => navigation.navigate("EventScreen")}>
                         <Text style={styles.buttonText}>Save</Text>
                     </TouchableOpacity>
                 </View>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         padding: 15,
         marginBottom: 10,
-        orderRadius: 10
+        borderRadius: 10
     },
     descInput: {
         width: "90%",

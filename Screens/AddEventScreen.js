@@ -8,44 +8,28 @@ const AddEventScreen = ({navigation}) => {
     const [event, setEventName] = useState('')
     const [desc, setDesc] = useState('')
 
+    const [eventItems, setEventItems] = useState('')
+
     const [eventName, onChangeEventName] = React.useState('')
     const [description, onChangeDesc] = React.useState('')
 
-    useEffect(() => {
-        getEventData();
-    }, []);
-
-    const getEventData = () => {
-        try {
-          
-            AsyncStorage.getItem('EventData')
-                .then(value => {
-                    if (value != null ) {
-                        let user = JSON.parse(value);
-                        setEventName(user.eventname);
-                        setDesc(user.description);
-                        //setIsLoggedIn(user.IsLoggedIn);
-                        console.log("EventData successful")
-                        
-                    }
-                    // if (isLoggedIn == true) {
-                    //   login();
-                    // } 
-                })
-        } catch (error) {
-            console.log(error)
-        }
+    const handleAddEvent = () => {
+        console.log(event)
+        setEventItems([...eventItems, event])
+        setEventName(null);
     }
 
+    
     return (
         <View style={styles.container}>
             <Text style={styles.eventTitle}>Enter event name:</Text>
 
                 <TextInput
                     style={styles.eventInput}
-                    onChangeText={(value) => onChangeEventName(value)}
+                    onChangeText={text => setEventName(text)}
                     value={eventName}
                     placeholder={'Event Name'}
+                    value={event}
                 />
                 <TextInput
                     style={styles.descInput}
@@ -55,6 +39,13 @@ const AddEventScreen = ({navigation}) => {
                 />
                 
                 <View style={styles.buttonContainer}>
+
+                    <TouchableOpacity
+                        style={styles.addBtn}
+                        onPress={() => handleAddEvent()}>
+                        <Text style={styles.buttonText}>Add Event</Text>
+                    </TouchableOpacity>
+
                     <TouchableOpacity
                         style={styles.saveBtn}
                         onPress={() => navigation.navigate('HomeScreen')}>
@@ -103,6 +94,13 @@ const styles = StyleSheet.create({
         width: '90%'
     },
     saveBtn: {
+        backgroundColor: '#ffd700',
+        padding: 15,
+        width: "45%",
+        marginBottom: 10,
+        borderRadius: 10,
+    },
+    addBtn: {
         backgroundColor: '#ffd700',
         padding: 15,
         width: "45%",

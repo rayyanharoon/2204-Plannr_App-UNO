@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet,Button, Text, Modal, TouchableOpacity, TextInput, View, Keyboard } from 'react-native';
-import ProfileScreen from './ProfileScreen';
 import Task from './Task';
 import { ScrollView } from 'react-native-gesture-handler';
 import { AuthContext } from "../context";
@@ -9,39 +8,40 @@ import { AuthContext } from "../context";
 const HomeScreen = ({navigation}) => {
   const [isModalVisible, setModalVisibility] = React.useState(false);
 
-  const [task, setTask] = useState();
-  const [taskItems, setTaskItems] = useState([]);
+  const [event, setEvent] = useState();
+  const [eventItems, setEventItems] = useState([]);
 
 
-  const handleAddTask = () => {
+  const handleAddEvent = () => {
     Keyboard.dismiss();
-    setTaskItems([...taskItems, task])
-    setTask(null);
+    setEventItems([...eventItems, event])
+    setEvent(null);
   }
 
-  const completeTask = (index) => {
-    let itemsCopy = [...taskItems];
-    itemsCopy.splice(index, 1);
-    setTaskItems(itemsCopy);
-  }
+  // const completeEvent = (index) => {
+  //   let itemsCopy = [...eventItems];
+  //   itemsCopy.splice(index, 1);
+  //   setEventItems(itemsCopy);
+  // }
 
   return (
     <View style={styles.container}>
 
      {/* today's tasks */}
     <View style={styles.taskWrapper}>
-      <Text style={styles.sectionTitle}>Today's tasks</Text>
+      <Text style={styles.sectionTitle}>Today's events</Text>
       <ScrollView>
+
       <View style={styles.items}>
         {/* this is where the tasks will go~~~ */}
         {
-          taskItems.map((event, index) => {
-            return (
-              <TouchableOpacity key={index} onPress={() => setModalVisibility(!isModalVisible)}>
-                <Task text={event} />
+          eventItems.map((event) => 
+          {
+            return <Task text={event} />
 
-              </TouchableOpacity>
-            )
+              // <TouchableOpacity key={index} onPress={() => setModalVisibility(!isModalVisible)}>
+              //   <Task text={event} />
+              // </TouchableOpacity>
           })
         }
         
@@ -60,8 +60,6 @@ const HomeScreen = ({navigation}) => {
         {/* <ProfileScreen/> */}
         <Button title="close modal" onPress={()=>{setModalVisibility(!isModalVisible)}}/>
         </View>
-        
-
     </View>
     
     </Modal>
@@ -71,8 +69,6 @@ const HomeScreen = ({navigation}) => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.writeTaskWrapper}
       >
-
-        
         {/* add button just change on press func so it leads to add events */}
         <TouchableOpacity onPress={() => navigation.navigate('AddEventScreen')}>
           <View style={styles.addWrapper}>
@@ -120,7 +116,6 @@ const styles = StyleSheet.create({
     borderColor: '#c0c0c0',
     borderWidth: 1,
     width: 250,
-
   },
   addWrapper: {
     width: 60,

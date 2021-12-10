@@ -16,7 +16,7 @@ const CalendarScreen = ({navigation}) => {
 
             {/* going to change this to pop-up calendar or date picker */}
             <Calendar style={styles.calendar}
-                current={'2021-11-01'}
+                current={'2021-12-01'}
                 minDate={''}
                 maxDate={''}
                 onDayPress={(day) => {console.log('selected day', day)}}

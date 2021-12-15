@@ -31,9 +31,7 @@ const LoginScreen = ({navigation}) => {
                       console.log("getData successful")
                       
                   }
-                  // if (isLoggedIn == true) {
-                  //   login();
-                  // } 
+
               })
       } catch (error) {
           console.log(error)

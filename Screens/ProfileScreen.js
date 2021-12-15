@@ -34,8 +34,6 @@ const ProfileScreen = (navigation) => {
     }
 
     const removeData = async () => {
-    // const removeData = () => {
-            // await AsyncStorage.clear();
         try{
             var user = {
                 Username: username,
@@ -43,7 +41,6 @@ const ProfileScreen = (navigation) => {
                 IsLoggedIn: false
             }
             await AsyncStorage.setItem('UserData', JSON.stringify(user));
-           
             setIsLoggedIn('false');
             console.log(user)
             signOut();

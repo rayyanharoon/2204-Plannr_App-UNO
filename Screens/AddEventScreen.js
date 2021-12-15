@@ -1,58 +1,65 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, StyleSheet, Modal, TouchableOpacity, Keyboard} from 'react-native';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+const AddEventScreen = ({navigation, onSubmit,visible, onClose,}) => {
 
-const AddEventScreen = ({navigation}) => {
-
-    const [event, setEventName] = useState('')
-    const [desc, setDesc] = useState('')
-
-    const [eventItems, setEventItems] = useState('')
-
-    const [eventName, onChangeEventName] = React.useState('')
-    const [description, onChangeDesc] = React.useState('')
-
-    const handleAddEvent = () => {
-        console.log(event)
-        setEventItems([...eventItems, event])
-        setEventName(null);
+    const [eventName, setEventName] = React.useState('')
+    const [description, setEventDesc] = React.useState('')
+   
+    const handleOnChangeText = (text, valueFor) => {
+        if (valueFor === 'eventName')  setEventName(text);
+        if (valueFor === 'description') setEventDesc(text);
+    }
+    
+    const handleSubmit = () => {
+        onSubmit(eventName, description);
+        setEventName('');
+        setEventDesc('');
+        onClose();
     }
 
-    
+    const handleModalClose = () => {
+        setEventName('');
+        setEventDesc('');
+        onClose()
+    }
+
     return (
+        <Modal visible={visible} transparent={true}>
         <View style={styles.container}>
             <Text style={styles.eventTitle}>Enter event name:</Text>
 
                 <TextInput
                     style={styles.eventInput}
-                    onChangeText={text => setEventName(text)}
-                    //value={eventName}
+                    onChangeText={text => handleOnChangeText(text, 'eventName')}
+                    value={eventName}
                     placeholder={'Event Name'}
-                    value={event}
                 />
                 <TextInput
                     style={styles.descInput}
-                    onChangeText={text => setDesc(text)}
-                    value={desc}
+                    onChangeText={text => handleOnChangeText(text, 'description')}
+                    value={description}
                     placeholder={'Description'}
                 />
                 
                 <View style={styles.buttonContainer}>
 
+                    {/* save button appears when inputs are filled */}
+                    {eventName.trim() && description.trim() ? (
                     <TouchableOpacity
                         style={styles.addBtn}
-                        onPress={() => handleAddEvent()}>
-                        <Text style={styles.buttonText}>Add Event</Text>
-                    </TouchableOpacity>
+                        onPress={() => handleSubmit()}>
+                        <Text style={styles.buttonText}>Save</Text>
+                    </TouchableOpacity>) : null}
 
                     <TouchableOpacity
-                        style={styles.saveBtn}
-                        onPress={() => navigation.navigate('HomeScreen')}>
-                        <Text style={styles.buttonText}>Save</Text>
+                        style={styles.cancelBtn}
+                        onPress={handleModalClose}>
+                        <Text style={styles.buttonText}>Cancel</Text>
                     </TouchableOpacity>
                 </View>
         </View>
+        </Modal>
     )
 }
 
@@ -60,9 +67,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#2B4162',
-        //centers the text field in the screen
         alignItems: 'center',
-        //places the text fields in the middle of the screen
         justifyContent: 'center',
     },
     eventTitle: {
@@ -93,7 +98,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '90%'
     },
-    saveBtn: {
+    cancelBtn: {
         backgroundColor: '#ffd700',
         padding: 15,
         width: "45%",

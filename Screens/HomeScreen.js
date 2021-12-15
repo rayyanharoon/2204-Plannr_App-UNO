@@ -1,82 +1,109 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet,Button, Text, Modal, TouchableOpacity, TextInput, View, Keyboard } from 'react-native';
-import Task from './Task';
-import { ScrollView } from 'react-native-gesture-handler';
-import { AuthContext } from "../context";
-
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AddEventScreen from './AddEventScreen';
+import EventScreen from './EventScreen';
+import Event from './Event';
 
 const HomeScreen = ({navigation}) => {
-  const [isModalVisible, setModalVisibility] = React.useState(false);
+  const [isItemModalVisible, setItemModalVisibility] = React.useState(false);
+  const [isAddEventModalVisible, setAddEventModalVisibility] = React.useState(false);
+  
+  const [itemData, setItemData] = React.useState('')
+  const [events, setEvents] = useState([]);
 
-  const [event, setEvent] = useState();
-  const [eventItems, setEventItems] = useState([]);
+  const getEvents = async () => {
+    const result = await AsyncStorage.getItem('events');
+    console.log('getEvents successful')
+    if(result !== null) setEvents(JSON.parse(result));
+  }
+  useEffect(() => {
+    getEvents();
+  }, [])
 
 
-  const handleAddEvent = () => {
-    Keyboard.dismiss();
-    setEventItems([...eventItems, event])
-    setEvent(null);
+  const handleOnSubmit = async (eventName, description) => {
+    const event = {
+      id: Date.now(), 
+      eventName, 
+      description, 
+      time: Date.now() 
+    };
+    console.log(event);
+    const updatedEvents = [...events, event];
+    setEvents(updatedEvents);
+    await AsyncStorage.setItem('events', JSON.stringify(updatedEvents));
+  };
+
+  const closeEventsHandler = () => {
+    setItemModalVisibility(false)
+  }
+  
+  const closeAddEventsHandler = () => {
+    setAddEventModalVisibility(false)
   }
 
-  // const completeEvent = (index) => {
-  //   let itemsCopy = [...eventItems];
-  //   itemsCopy.splice(index, 1);
-  //   setEventItems(itemsCopy);
-  // }
+  const itemModalHandler = (item) => {
+    setItemModalVisibility(true)
+    setItemData(item);
+    console.log(item.eventName)
+  }
+
+  const onCompleteHandler = async (id) => {
+      console.log("completed " + id)
+      let filterArray = events.filter((val, i) => {
+        if (val.id !== id) {
+          return val
+        }
+      })
+      setEvents(filterArray)
+      await AsyncStorage.setItem('events', JSON.stringify(filterArray));
+  }
 
   return (
     <View style={styles.container}>
 
-     {/* today's tasks */}
-    <View style={styles.taskWrapper}>
-      <Text style={styles.sectionTitle}>Today's events</Text>
-      <ScrollView>
-
-      <View style={styles.items}>
-        {/* this is where the tasks will go~~~ */}
-        {
-          eventItems.map((event) => 
-          {
-            return <Task text={event} />
-
-              // <TouchableOpacity key={index} onPress={() => setModalVisibility(!isModalVisible)}>
-              //   <Task text={event} />
-              // </TouchableOpacity>
-          })
-        }
-        
-      </View>
-      </ScrollView>
+     {/* today's Events */}
+    <View style={styles.eventWrapper}>
+      <Text style={styles.sectionTitle}> Today's events</Text>
+        <FlatList
+          data={events} 
+          keyExtractor={item => item.id.toString()} 
+          renderItem={({item}) =>
+           <Event 
+              item={item} 
+              onPress={()=>itemModalHandler(item)}
+              onComplete={onCompleteHandler}
+            />
+          } 
+        />
     </View>
 
-    <Modal
-    transparent={true}
-    visible={isModalVisible}
-    animationType='fade'
->
-    <View style={{backgroundColor: "#000000aa", flex: 1}}>
-        <View style={{backgroundColor: "#ffffff", margin: 50, padding: 40, borderRadius: 10, flex: 1}}> 
-        <Text stlye={{fontSize: 50}}> Modal Text</Text>
-        {/* <ProfileScreen/> */}
-        <Button title="close modal" onPress={()=>{setModalVisibility(!isModalVisible)}}/>
-        </View>
-    </View>
-    
-    </Modal>
-    {/* write a task */}
+    <EventScreen
+      visible={isItemModalVisible}
+      onClose={closeEventsHandler}
+      item={itemData}
+      />
 
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.writeTaskWrapper}
+      style={styles.writeEventWrapper}
       >
-        {/* add button just change on press func so it leads to add events */}
-        <TouchableOpacity onPress={() => navigation.navigate('AddEventScreen')}>
-          <View style={styles.addWrapper}>
-            <Text style={styles.addText}>+</Text>
-          </View>
-        </TouchableOpacity>
 
-      </KeyboardAvoidingView>
+      <TouchableOpacity onPress={() => setAddEventModalVisibility(true) }>
+        <View style={styles.addWrapper}>
+          <Text style={styles.addText}>+</Text>
+        </View>
+      </TouchableOpacity>
+
+    </KeyboardAvoidingView>
+
+      <AddEventScreen 
+        visible={isAddEventModalVisible}
+        onClose={closeAddEventsHandler}
+        onSubmit={handleOnSubmit}
+        />
 
     </View>
   );
@@ -87,10 +114,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#2B4162',
   },
-  taskWrapper: {
+  eventWrapper: {
     paddingTop: 50,
     paddingHorizontal: 20,
+    //solves the cut flatlist at the bottom
+    paddingBottom: 35
   },
+
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -100,22 +130,13 @@ const styles = StyleSheet.create({
   items: {
     marginTop: 20
   },
-  writeTaskWrapper: {
+  writeEventWrapper: {
     position: 'absolute',
     bottom: 60,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center'
-  },
-  input: {
-    paddingVertical: 15,
-    paddingHorizontal: 15,
-    backgroundColor: '#fff',
-    borderRadius: 60,
-    borderColor: '#c0c0c0',
-    borderWidth: 1,
-    width: 250,
   },
   addWrapper: {
     width: 60,
@@ -127,9 +148,6 @@ const styles = StyleSheet.create({
     borderColor: '#c0c0c0',
     borderWidth: 1
   },
-  addText:{
-
-  }
 });
 
 export default HomeScreen;

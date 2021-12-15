@@ -27,14 +27,14 @@ const AddEventScreen = ({navigation}) => {
                 <TextInput
                     style={styles.eventInput}
                     onChangeText={text => setEventName(text)}
-                    value={eventName}
+                    //value={eventName}
                     placeholder={'Event Name'}
                     value={event}
                 />
                 <TextInput
                     style={styles.descInput}
-                    onChangeText={onChangeDesc}
-                    value={description}
+                    onChangeText={text => setDesc(text)}
+                    value={desc}
                     placeholder={'Description'}
                 />
                 

@@ -7,11 +7,13 @@ import {Calendar} from 'react-native-calendars';
 
 const CalendarScreen = ({navigation}) => {
 
+    var today = new Date();
+
     return (
         <View style={styles.container}>
 
             <Calendar style={styles.calendar}
-                current={'2021-12-01'}
+                current={today}
                 minDate={''}
                 maxDate={''}
                 onDayPress={(day) => {console.log('selected day', day)}}

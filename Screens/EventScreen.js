@@ -31,13 +31,14 @@ const styles = StyleSheet.create({
     eventName: {
         textAlign: 'center',
         padding: 15,
-        fontSize: 30,
-        paddingBottom:20
+        fontSize: 35,
+        paddingBottom:20,
+        color: '#ffffff'
     },
     eventDesc: {
         padding: 15,
-
-        fontSize: 15
+        fontSize: 20,
+        color: '#ffffff'
     },
     btnContainer: {
         flexDirection: 'column',
@@ -47,7 +48,6 @@ const styles = StyleSheet.create({
     },
     backBtn: {
         marginTop:50,
-
         backgroundColor: '#ffd700',
         padding: 15,
         width: "45%",
@@ -58,6 +58,6 @@ const styles = StyleSheet.create({
         fontSize: 15,
         textAlign: 'center'
     }
-})
+});
 
 export default EventScreen;

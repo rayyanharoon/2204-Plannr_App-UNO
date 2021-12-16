@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, StyleSheet, Modal, TouchableOpacity, Keyboard} from 'react-native';
 
+
 const AddEventScreen = ({navigation, onSubmit,visible, onClose,}) => {
 
     const [eventName, setEventName] = React.useState('')
@@ -26,39 +27,39 @@ const AddEventScreen = ({navigation, onSubmit,visible, onClose,}) => {
 
     return (
         <Modal visible={visible} transparent={true}>
-        <View style={styles.container}>
-            <Text style={styles.eventTitle}>Enter event name:</Text>
+            <View style={styles.container}>
+                <Text style={styles.eventTitle}>Enter event name:</Text>
 
-                <TextInput
-                    style={styles.eventInput}
-                    onChangeText={text => handleOnChangeText(text, 'eventName')}
-                    value={eventName}
-                    placeholder={'Event Name'}
-                />
-                <TextInput
-                    style={styles.descInput}
-                    onChangeText={text => handleOnChangeText(text, 'description')}
-                    value={description}
-                    placeholder={'Description'}
-                />
-                
-                <View style={styles.buttonContainer}>
+                    <TextInput
+                        style={styles.eventInput}
+                        onChangeText={text => handleOnChangeText(text, 'eventName')}
+                        value={eventName}
+                        placeholder={'Event Name'}
+                    />
+                    <TextInput
+                        style={styles.descInput}
+                        onChangeText={text => handleOnChangeText(text, 'description')}
+                        value={description}
+                        placeholder={'Description'}
+                    />
+                    
+                    <View style={styles.buttonContainer}>
 
-                    {/* save button appears when inputs are filled */}
-                    {eventName.trim() && description.trim() ? (
-                    <TouchableOpacity
-                        style={styles.addBtn}
-                        onPress={() => handleSubmit()}>
-                        <Text style={styles.buttonText}>Save</Text>
-                    </TouchableOpacity>) : null}
+                        {/* save button appears when inputs are filled */}
+                        {eventName.trim() && description.trim() ? (
+                        <TouchableOpacity
+                            style={styles.addBtn}
+                            onPress={() => handleSubmit()}>
+                            <Text style={styles.buttonText}>Save</Text>
+                        </TouchableOpacity>) : null}
 
-                    <TouchableOpacity
-                        style={styles.cancelBtn}
-                        onPress={handleModalClose}>
-                        <Text style={styles.buttonText}>Cancel</Text>
-                    </TouchableOpacity>
-                </View>
-        </View>
+                        <TouchableOpacity
+                            style={styles.cancelBtn}
+                            onPress={handleModalClose}>
+                            <Text style={styles.buttonText}>Cancel</Text>
+                        </TouchableOpacity>
+                    </View>
+            </View>
         </Modal>
     )
 }

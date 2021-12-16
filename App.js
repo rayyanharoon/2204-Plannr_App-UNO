@@ -39,7 +39,6 @@ const AuthStackScreen = () => (
 const Tabs = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 
-
 const HomeStackScreen = () => (
   <HomeStack.Navigator screenOptions={{headerShown:false}} >
     <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
@@ -75,7 +74,6 @@ const TabScreen = () => (
         tabBarIcon: ({color, size}) => (<Ionicons name='book' color={color} size={size}/>)
       }} />
   </Tabs.Navigator>
-
 )
 
 const RootStack = createStackNavigator();
@@ -97,7 +95,6 @@ const RootStackScreen = ({userToken}) => (
           />
     )}
   </RootStack.Navigator>
-
 )
 
 function App() {

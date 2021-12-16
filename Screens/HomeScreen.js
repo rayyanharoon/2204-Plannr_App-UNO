@@ -6,6 +6,7 @@ import AddEventScreen from './AddEventScreen';
 import EventScreen from './EventScreen';
 import Event from './Event';
 
+
 const HomeScreen = ({navigation}) => {
   const [isItemModalVisible, setItemModalVisibility] = React.useState(false);
   const [isAddEventModalVisible, setAddEventModalVisibility] = React.useState(false);
@@ -21,7 +22,6 @@ const HomeScreen = ({navigation}) => {
   useEffect(() => {
     getEvents();
   }, [])
-
 
   const handleOnSubmit = async (eventName, description) => {
     const event = {
@@ -66,7 +66,7 @@ const HomeScreen = ({navigation}) => {
 
      {/* today's Events */}
     <View style={styles.eventWrapper}>
-      <Text style={styles.sectionTitle}> Today's events</Text>
+      <Text style={styles.sectionTitle}>Today's events</Text>
         <FlatList
           data={events} 
           keyExtractor={item => item.id.toString()} 
@@ -120,7 +120,6 @@ const styles = StyleSheet.create({
     //solves the cut flatlist at the bottom
     paddingBottom: 35
   },
-
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',

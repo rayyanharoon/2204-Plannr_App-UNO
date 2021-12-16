@@ -3,7 +3,9 @@ import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
 import { AuthContext } from "../context";
 
+// offline storage - this is what we used for database
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const LoginScreen = ({navigation}) => {
   const {login} = React.useContext(AuthContext);
@@ -144,9 +146,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center'
   }
-
-
 });
-
 
 export default LoginScreen;

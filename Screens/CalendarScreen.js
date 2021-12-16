@@ -2,8 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Picker} from 'react-native';
 
-//adding the calendar template
+//adding the calendar template/module
 import {Calendar} from 'react-native-calendars';
+
 
 const CalendarScreen = ({navigation}) => {
 
@@ -51,6 +52,6 @@ const styles = StyleSheet.create({
         width: 370
 
     }
-  });
+});
 
 export default CalendarScreen;

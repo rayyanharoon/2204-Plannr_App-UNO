@@ -64,7 +64,6 @@ const SignUpScreen = ({navigation}) => {
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -77,7 +76,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
     color: '#fff',
-    // fontFamily: 'Helvetica',
     fontWeight: 'bold'
   },
   welcome: {
@@ -117,9 +115,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center'
   }
-
-
 });
-
 
 export default SignUpScreen;
